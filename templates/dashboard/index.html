@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  	<meta charset="UTF-8">
+  	<title>Twilio Dashboard Design</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  	<link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/dashboard/style.css') }}">
+	<script src="{{ url_for('static',filename='js/jquery.min.js') }}"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="{{ url_for('static',filename='js/user.js') }}"></script>
+</head>
+<body>
+  <nav>
+	<div class="logo">
+		<a href="#">
+			<span class="fa fa-cloud"></span>
+			<span class="title">Service Dashboard</span>
+		</a>
+	</div>
+	<ul class="main-nav">
+		<li>
+			<a href="#"><span class="fa fa-users"></span>Users</a>
+		</li>
+		<li>
+			<a href="#"><span class="fa fa-tasks"></span>Settings</a>
+		</li>
+	</ul>
+</nav>
+<div class="dashboard">
+	<div class="clearfix">
+		<h1>Dashboard</h1>
+		<div class="main-section">
+			<div class="card-activity card">
+				<div class="card-title">
+					<h2>Execution Command Line</h2>
+				</div>
+				<div class="card-body">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore voluptatibus perspiciatis mollitia qui totam fuga, hic nostrum officia voluptas corrupti ab doloremque facilis ut quis quae dolores reiciendis deleniti! Qui!</p>
+				<a href="#" class="btn">See more...</a>
+				</div>
+			</div>
+			<div class="card-info card">
+				<div class="card-title">
+					<h2>USER DATA</h2>
+				</div>
+				<div class="card-body">
+					<table class="table">
+					  <thead>
+					  	<div class="col-xs-4"><div class="btn">UPLOAD FILE (.csv)</div></div>
+						<div class="col-xs-3"></div>
+				  		<div class="input-group col-xs-5">
+					      <input type="text" class="form-control" placeholder="QUERY... <ls> <filter> <asc>">
+					      <span class="input-group-btn">
+					        <button class="btn btn-default" type="button">Status</button>
+					      </span>
+					    </div>
+					    <tr>
+					      <th scope="col">#</th>
+					      {% for head in header %}
+					      <th scope="col">{{ head }}</th>
+					      {% endfor %}
+					    </tr>
+					  </thead>
+					  <tbody id='js-tbody'>
+					      {% for user in users %}
+					      <tr>
+						      <th scope="row">{{ user.id }}</th>
+						      <td>{{ user.first_name + " " + user.last_name }}</td>
+						      <td>{{ user.state }}</td>
+						      <td>{{ user.zipcode }}</td>
+						      <td>{{ user.dob }}</td>
+						      <td>{{ user.sex }}</td>
+						      <td>{{ user.phone }}</td>
+					  	  </tr>
+					      {% endfor %}
+					  </tbody>
+					</table>
+					<div class="page-control" id="js-page">
+						<ul class="pagination">
+					    <li class="page-item">
+					      <a class="page-link" href="#" aria-label="Previous">
+					        <span aria-hidden="true">&laquo;</span>
+					        <span class="sr-only">Previous</span>
+					      </a>
+					    </li>
+					    <li class="page-item"><a class="page-link">1</a></li>
+					    <li class="page-item"><a class="page-link">2</a></li>
+					    <li class="page-item"><a class="page-link">3</a></li>
+					    <li class="page-item"><a class="page-link">4</a></li>
+					    <li class="page-item"><a class="page-link">5</a></li>
+					    <li class="page-item">
+					      <a class="page-link" href="#" aria-label="Next">
+					        <span aria-hidden="true">&raquo;</span>
+					        <span class="sr-only">Next</span>
+					      </a>
+					    </li>
+					  </ul>
+					</div>
+				</div>	
+			</div>
+			<div class="card-activity card">
+				<div class="card-title">
+					<h2>OPERATING PHONE NUMBERS</h2>
+				</div>
+				<div class="card-body">
+					<table class="table">
+					  <thead>
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">First</th>
+					      <th scope="col">Last</th>
+					      <th scope="col">Handle</th>
+					      <th scope="col">Status</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">1</th>
+					      <td>Mark</td>
+					      <td>Otto</td>
+					      <td>@mdo</td>
+					      <td>131313435</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">2</th>
+					      <td>Jacob</td>
+					      <td>Thornton</td>
+					      <td>@fat</td>
+					      <td>131313435</td>
+					    </tr>
+					  </tbody>
+					</table>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore voluptatibus perspiciatis mollitia qui totam fuga, hic nostrum officia voluptas corrupti ab doloremque facilis ut quis quae dolores reiciendis deleniti! Qui!</p>
+				<a href="#" class="btn">See more...</a>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- <div class="card-contact">
+				<form action="">
+					<div class="form-inner">
+						<h2>contact <span>us</span></h2>
+						<ul class="introduction clearfix">
+							<li>
+								<input type="radio" id="hi" name="hi" />
+								<label for="hi">say hi</label>
+							</li>
+							<li>
+								<input type="radio" id="quote" name="quote" />
+								<label for="quote">get a quote</label>
+							</li>
+						</ul>
+						<ul class="signin">
+							<li>
+								<label for="name">Your <span>name</span> </label>
+								<input type="text" id="name" name="name"/></li>
+							<li>
+								<label for="email">Your <span>Email</span></label>
+								<input type="text" id="email" name="email" /></li>
+							<li>
+								<label for="message">Your <span>Message</span></label>
+								<textarea name="mesage" id="message" rows="6"></textarea>
+						</ul>
+					</div>
+					<input type="submit" value="send message" />
+				</form>
+			</div> -->
+	</div>
+</div>
+<script src='https://code.jquery.com/jquery-2.2.4.min.js'></script>
+</body>
+</html>

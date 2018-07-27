@@ -1,0 +1,244 @@
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:600,700);
+.clearfix:after, .clearfix:before {
+  content: "";
+  display: table; }
+.clearfix:after {
+  clear: both; }
+
+html {
+  font-size: 100%; }
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #ffffff; }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  color: #ffffff; }
+
+h1 {
+  font-size: 1.5em;
+  margin: 0; }
+
+h2 {
+  font-size: 1.25em;
+  padding: 0 20px; }
+
+p {
+  font-size: 0.875em;
+  line-height: 1.45; }
+
+nav {
+  background: #424242;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.28);
+  display: inline-block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 240px;
+  max-width: 100%;
+  z-index: 10; }
+
+.logo a {
+  color: #aeaeae;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+  padding: 20px 0;
+  transition: all 200ms ease; }
+  .logo a:hover {
+    color: #2a2a2a; }
+  .logo a .title {
+    display: block;
+    font-size: 1em; }
+  .logo a .fa {
+    font-size: 68px; }
+
+.main-nav {
+  margin: 0;
+  padding: 0; }
+  .main-nav a {
+    display: block;
+    color: #FAFAFA;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.875em;
+    padding: 1em 0 1em 20px;
+    transition: background 200ms ease; }
+    .main-nav a:hover {
+      background: #616161; }
+    .main-nav a .fa {
+      margin-right: 0.5em;
+      color: #c7c7c7; }
+
+.dashboard {
+  background: #2a2a2a;
+  box-sizing: border-box;
+  padding: 20px 0 0 240px;
+  width: 100%;
+  height: 100%; }
+  .dashboard h1 {
+    text-shadow: 0 0 1px #FAFAFA;
+    margin: 0 0 40px 20px;
+    text-transform: uppercase; }
+  .dashboard .card {
+    background: #313131;
+    box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+    display: inline-block;
+    margin-bottom: 40px; }
+  .dashboard .card-body {
+    padding: 0 20px; }
+  .dashboard .card-title {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px; }
+
+.main-section, .sidebar {
+  margin: 0 2%; }
+
+.main-section {
+  float: left; }
+
+.sidebar {
+  float: right; }
+
+.card-news a {
+  color: #FAFAFA;
+  text-decoration: none; }
+  .card-news a:hover {
+    color: white; }
+.card-news .date {
+  display: block;
+  font-size: 0.75em;
+  color: rgba(255, 255, 255, 0.6); }
+
+.card-activity a {
+  color: #FAFAFA;
+  display: inline-block;
+  font-size: 0.875em;
+  text-decoration: none;
+  margin-bottom: 10px; }
+  .card-activity a:hover {
+    color: white; }
+
+.card-info ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none; }
+  .card-info ul li {
+    background: #2a2a2a;
+    margin-bottom: 10px;
+    padding: 10px; }
+  .card-info ul .plugin-name {
+    font-size: 1em;
+    color: #FAFAFA;
+    margin-bottom: 0.4em; }
+  .card-info ul .plugin-details {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 0.875em; }
+
+.card-contact {
+  background: #3e6aff;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 40px; }
+  .card-contact .form-inner {
+    padding: 60px 60px 0 60px; }
+  .card-contact h2 {
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    margin-bottom: 40px; }
+    .card-contact h2 span {
+      color: rgba(255, 255, 255, 0.6); }
+  .card-contact .introduction {
+    padding: 0;
+    margin: 0 0 40px 0; }
+    .card-contact .introduction li {
+      float: left;
+      list-style-type: none;
+      width: 50%;
+      text-align: center;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6); }
+      .card-contact .introduction li label {
+        font-size: 0.875em;
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+        padding-left: 25px; }
+      .card-contact .introduction li label:before {
+        content: "";
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+        position: absolute;
+        left: 0;
+        bottom: 1px;
+        background-color: #2c58ec;
+        border-radius: 8px; }
+      .card-contact .introduction li input[type="radio"] {
+        display: none; }
+      .card-contact .introduction li input[type="radio"]:checked + label:before {
+        content: "\2022";
+        color: #fefeff;
+        font-size: 30px;
+        text-align: center;
+        line-height: 18px; }
+  .card-contact .signin {
+    padding: 0;
+    margin: 0; }
+    .card-contact .signin li {
+      margin-bottom: 40px;
+      list-style-type: none; }
+      .card-contact .signin li label {
+        display: block;
+        text-transform: uppercase;
+        font-size: 0.875em; }
+        .card-contact .signin li label span {
+          color: rgba(255, 255, 255, 0.6); }
+      .card-contact .signin li input[type="text"],
+      .card-contact .signin li input[type="email"],
+      .card-contact .signin li textarea {
+        box-sizing: border-box;
+        background: transparent;
+        border: 0;
+        border-bottom: 2px solid #3663f0;
+        display: inline-block;
+        width: 100%;
+        padding: 0.5em 0.5em 0.5em 0;
+        transition: all 200ms ease; }
+      .card-contact .signin li input:focus,
+      .card-contact .signin li textarea:focus {
+        outline: none;
+        border-bottom-color: #ffffff; }
+  .card-contact input[type="submit"] {
+    display: block;
+    background: #3b66f3;
+    border: 0;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.875em;
+    width: 100%;
+    padding: 2em 0;
+    transition: all 200ms ease; }
+    .card-contact input[type="submit"]:hover {
+      background: #2958f2; }
+    .card-contact input[type="submit"]:active {
+      box-shadow: inset 0 4px 8px -2px rgba(0, 0, 0, 0.4); }
+  .card-contact input[type="submit"]:focus {
+    outline: none; }
+
+@media only screen and (max-width: 75em) {
+  .main-section, .sidebar {
+    float: none;
+    margin: 0 auto;
+    width: 76%; }
+
+  .card-contact form {
+    box-shadow: 80px 20px 0 -40px rgba(62, 106, 255, 0.2); } }
+
+/*# sourceMappingURL=demo.css.map */
