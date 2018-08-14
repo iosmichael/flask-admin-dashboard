@@ -10,6 +10,14 @@ $dashboard-panel-bg: #313131;
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600,700);
 
+.modal-backdrop {
+    z-index: 1040 !important;
+}
+.modal-dialog {
+    margin: 2px auto;
+    z-index: 1100 !important;
+}
+
 //MIXINS
 .clearfix{
 	&:after,&:before{
@@ -297,6 +305,17 @@ nav{
 	}
 	input[type="submit"]:focus{
 		outline: none;
+	}
+}
+
+.modal{
+	color: black;
+	.modal-title{
+		color: black;
+		float: left;
+	}
+	button.close{
+		float: right;
 	}
 }
 

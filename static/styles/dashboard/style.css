@@ -233,6 +233,14 @@ nav {
   .card-contact input[type="submit"]:focus {
     outline: none; }
 
+.modal {
+  color: black; }
+  .modal .modal-title {
+    color: black;
+    float: left; }
+  .modal button.close {
+    float: right; }
+
 @media only screen and (max-width: 75em) {
   .main-section, .sidebar {
     float: none;

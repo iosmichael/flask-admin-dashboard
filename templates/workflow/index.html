@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  	<meta charset="UTF-8">
+  	<title>Twilio Dashboard Design</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+  	<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css'>
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  	<link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/dashboard/style.css') }}">
+  	<script
+	  src="https://code.jquery.com/jquery-3.3.1.min.js"
+	  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	  crossorigin="anonymous"></script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="{{ url_for('static',filename='js/message.js') }}"></script>
+</head>
+<body>
+  <nav>
+	<div class="logo">
+		<a href="#">
+			<span class="fa fa-cloud"></span>
+			<span class="title">Service Dashboard</span>
+		</a>
+	</div>
+	<ul class="main-nav">
+		<li>
+			<a href="/admin"><span class="fa fa-users"></span>Users</a>
+		</li>
+		<li>
+			<a href="/settings"><span class="fa fa-tasks"></span>Settings</a>
+		</li>
+	</ul>
+</nav>
+<div class="dashboard">
+	<div class="clearfix">
+		<h1>Settings</h1>
+		<div class="main-section">
+			<div class="card-activity card">
+				<div class="card-title">
+					<h2>Execution Command Line</h2>
+				</div>
+				<div class="card-body">
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore voluptatibus perspiciatis mollitia qui totam fuga, hic nostrum officia voluptas corrupti ab doloremque facilis ut quis quae dolores reiciendis deleniti! Qui!</p>
+				<a href="#" class="btn">See more...</a>
+				</div>
+			</div>
+			<div class="card-info card">
+				<div class="card-title">
+					<h2>CUSTOM MESSAGES AND WORKFLOW</h2>
+				</div>
+				<div class="card-body">
+					<table class="table">
+					  <thead>
+					  	<div class="col-xs-4"></div>
+						<div class="col-xs-3"></div>
+				  		<div class="input-group col-xs-5">
+					        <button class="btn btn-default" type="button" id="create-btn">Add Message/Status Tag</button>
+					    </div>
+					    <tr>
+					      <th scope="col">#</th>
+					      {% for head in header %}
+					      <th scope="col">{{ head }}</th>
+					      {% endfor %}
+					    </tr>
+					  </thead>
+					  <tbody id='js-tbody'>
+					      {% for msg in messages %}
+					      <tr data-id="{{ msg.id }}">
+						      <th scope="row">{{ msg.id }}</th>
+						      <td>{{ msg.tag }}</td>
+						      <td>{{ msg.tru_tag }}</td>
+						      <td>{{ msg.fal_tag }}</td>
+						      <td>{{ msg.el_tag }}</td>
+						      <td>{{ msg.content }}</td>
+					  	  </tr>
+					      {% endfor %}
+					  </tbody>
+					</table>
+				</div>	
+			</div>
+			<div class="card-activity card">
+				<div class="card-title">
+					<h2>OPERATING PHONE NUMBERS</h2>
+				</div>
+				<div class="card-body">
+					<table class="table">
+					  <thead>
+					    <tr>
+					      <th scope="col">#</th>
+					      <th scope="col">First</th>
+					      <th scope="col">Last</th>
+					      <th scope="col">Handle</th>
+					      <th scope="col">Status</th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <th scope="row">1</th>
+					      <td>Mark</td>
+					      <td>Otto</td>
+					      <td>@mdo</td>
+					      <td>131313435</td>
+					    </tr>
+					    <tr>
+					      <th scope="row">2</th>
+					      <td>Jacob</td>
+					      <td>Thornton</td>
+					      <td>@fat</td>
+					      <td>131313435</td>
+					    </tr>
+					  </tbody>
+					</table>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore voluptatibus perspiciatis mollitia qui totam fuga, hic nostrum officia voluptas corrupti ab doloremque facilis ut quis quae dolores reiciendis deleniti! Qui!</p>
+				<a href="#" class="btn">See more...</a>
+				</div>
+			</div>
+		</div>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">Create Tag</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <form>
+				  <div class="form-group">
+				    <label for="tag">Tag Name</label>
+				    <input type="text" class="form-control" id="tag" placeholder="Input Tag">
+				  </div>
+				  <div class="form-group">
+				    <label>True Tag</label>
+				    <select class="form-control selectpicker" id="tru_tag">
+				      	{% for tag in tags %}
+						<option>{{ tag.tag }}</option>
+						{% endfor %}
+					  </select>
+				    <input type="text" class="form-control" id="tru_indicator" placeholder="Key Indicator">
+				  </div>
+				  <div class="form-group">
+				    <label>False Tag</label>
+				    <select class="form-control selectpicker" id="fal_tag">
+				      	{% for tag in tags %}
+						<option>{{ tag.tag }}</option>
+						{% endfor %}
+					  </select>
+				    <input type="text" class="form-control" id="fal_indicator" placeholder="Key Indicator">
+				  </div>
+				  <div class="form-group">
+				    <label>Else Tag</label>
+				    <select class="form-control selectpicker" id="el_tag">
+				      	{% for tag in tags %}
+						<option>{{ tag.tag }}</option>
+						{% endfor %}
+					  </select>
+				  </div>
+				  <div class="form-group">
+				    <label for="content">Auto Response</label>
+				    <textarea class="form-control" id="content" rows="4"></textarea>
+				  </div>
+				</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-danger" data-dismiss="modal" id='delete-tag'>Delete</button>
+		        <button type="button" class="btn btn-primary" id='save-change'>Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
