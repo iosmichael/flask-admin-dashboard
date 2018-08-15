@@ -8,7 +8,7 @@ INIT_STATE = "CREATED"
 FINAL_STATE_SUCCESS = "QUALIFIED"
 FINAL_STATE_FAILURE = "UNQUALIFIED"
 FINAL_STATE_ERROR = "ACTION"
-DEFAULT_CARRIER = "8157612213"
+DEFAULT_CARRIER = "+13317041126"
 
 def auto_reply(form):
 	answer = form['Body']
@@ -29,11 +29,11 @@ def auto_reply(form):
 def send_msg(phone, message):
 	#twilio api
 	client = Client(ACCOUND_SID, AUTH_TOKEN)
-	message = client.messages.\
+	msg = client.messages.\
 	create(
     	to="+1"+phone,
     	body=message,
-    	from_="+1"+DEFAULT_CARRIER
+    	from_=DEFAULT_CARRIER
     )
 	create_record(True, phone, DEFAULT_CARRIER, message)
 	return message
