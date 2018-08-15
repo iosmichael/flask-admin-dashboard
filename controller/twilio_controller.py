@@ -12,9 +12,9 @@ DEFAULT_CARRIER = "+13317041126"
 
 def auto_reply(form):
 	answer = form['Body']
-	phone = form['Phone']
+	phone = form['From']
 	INFO = create_record(False, phone, DEFAULT_CARRIER, answer)
-	user, _ = query_object('User', filters={'phone': phone})
+	user, _ = query_object('User', filters={'phone': phone[2:]})
 	tag = get_tag(user.tag)
 	if tag is not None and is_final(tag) is False:
 		next_tag_node = next_tag(answer, tag)

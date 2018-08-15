@@ -130,4 +130,8 @@ def reply():
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
 	app.run(host='0.0.0.0', debug=True, port=80)
+=======
+	app.run(host='0.0.0.0', debug=True, port=80)
+>>>>>>> 08d6c151f58e444ffab6df92b6615222d2313e43
