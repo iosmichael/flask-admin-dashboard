@@ -58,7 +58,7 @@ def update(name, uid):
     INFO = update_object(name, uid, request.form.to_dict())
     return INFO
 
-@app.route('/delete/<name>/<uid>')
+@app.route('/delete/<name>/<uid>', methods=['POST'])
 def delete(name, uid):
     obj, _ = query_object(name, filters={'id':uid})
     INFO = drop_object(obj)
@@ -112,22 +112,15 @@ def send_custom():
     if 'phone' in request.form.keys():
         if 'message' in request.form.keys():
             return send_msg(request.form['phone'], request.form['message'])
-    return 'Custom Message Not Sent'
+    return 'Custom Message Does Not Send'
 
-@app.route("/twillio", methods=['GET', 'POST'])
-def sms_reply():
+@app.route("/twilio", methods=['GET', 'POST'])
+def reply():
     """Respond to incoming calls with a simple text message."""
     # Start our TwiML response
-    if request.form['Body'] == "Yes":
-        resp = MessagingResponse()
-        # Add a message
-        resp.message("Well Bye")
-        return str(resp)
-    else:
-        resp = MessagingResponse()
-        # Add a message
-        resp.message("Are you an asshole?")
-        return str(resp)
+    resp = MessagingResponse()
+    resp.message(auto_reply(request.form))
+    return str(resp)
 
 # @app.route('/admin/recover')
 # def recover_db():

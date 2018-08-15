@@ -8,7 +8,7 @@ class User(db.Model):
 	state = db.Column(db.String(20), unique=False, nullable=True)
 	zipcode = db.Column(db.String(20), unique=False, nullable=True)
 	dob = db.Column(db.String(20), unique=False, nullable=True)
-	sex = db.Column(db.String(10), unique=False, nullable=False)
+	sex = db.Column(db.String(10), unique=False, nullable=True)
 	phone = db.Column(db.String(20), unique=True, nullable=False)
 	tag = db.Column(db.String(30), unique=False, nullable=True, default='CREATED')
 	last_response = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
@@ -25,7 +25,7 @@ class User(db.Model):
 		if 'first_name' in kwarg.keys():
 			self.first_name = kwarg.get('first_name')
 		if 'last_name' in kwarg.keys():
-			self.first_name = kwarg.get('last_name')
+			self.last_name = kwarg.get('last_name')
 		if 'state' in kwarg.keys():
 			self.state = kwarg.get('state')
 		if 'zipcode' in kwarg.keys():

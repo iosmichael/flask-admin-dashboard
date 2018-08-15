@@ -71,9 +71,6 @@ def test_auto_reply():
     records, _ = paginate_with_filters("Record", 100, filters={"phone": phone}, criterion=['time'])
     user, _ = query_object('User', filters= {'id': UID})
 
-def send_message():
-    return None
-
 def find_tag():
     tag, _ = query_object('Message', filters={"tag": INIT_STATE})
     return tag
@@ -87,10 +84,10 @@ def find_tags():
 
 with app.test_request_context():
     # test_auto_reply()
-    auto_reply({
-        'Body': 'Yes is my answer',
-        'Phone': '9549295555'
-        })
+    # auto_reply({
+    #     'Body': 'Yes is my answer',
+    #     'Phone': '9549295555'
+    #     })
     # records, _ =query_all('Record', filters={'phone':'9549295555'})
     # for record in records:
     #     print(record)
@@ -101,4 +98,6 @@ with app.test_request_context():
     # for user in users:
     #     print(user.tag)
     # print(find_tags())
+    reset_all()
+    reset_workflow()
     exit(0)

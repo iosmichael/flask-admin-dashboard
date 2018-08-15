@@ -22,18 +22,19 @@ def auto_reply(form):
 			update_user_tag(user.id, next_tag_node.tag)
 			#twilio api
 			INFO = create_record(True, phone, DEFAULT_CARRIER, next_tag_node.content)
-			return next_tag_node.content, phone
+			return next_tag_node.content
 	INFO = create_record(True, phone, DEFAULT_CARRIER, "I will contact with you shortly")
-	return "I will contact with you shortly", phone
+	return "I will contact with you shortly"
 
 def send_msg(phone, message):
 	#twilio api
-	# client = Client(ACCOUND_SID, AUTH_TOKEN)
- #    message = client.messages.create(
- #    	to="+1"+phone,
- #    	body=message,
- #    	from_="+1"+DEFAULT_CARRIER
- #    	)
+	client = Client(ACCOUND_SID, AUTH_TOKEN)
+	message = client.messages.\
+	create(
+    	to="+1"+phone,
+    	body=message,
+    	from_="+1"+DEFAULT_CARRIER
+    )
 	create_record(True, phone, DEFAULT_CARRIER, message)
 	return message
 
