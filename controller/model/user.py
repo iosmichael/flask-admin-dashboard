@@ -5,11 +5,13 @@ class User(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	first_name = db.Column(db.String(30), unique=False, nullable=False)
 	last_name = db.Column(db.String(30), unique=False, nullable=False)
+	phone = db.Column(db.String(20), unique=True, nullable=False)
+
 	state = db.Column(db.String(20), unique=False, nullable=True)
 	zipcode = db.Column(db.String(20), unique=False, nullable=True)
 	dob = db.Column(db.String(20), unique=False, nullable=True)
 	sex = db.Column(db.String(10), unique=False, nullable=True)
-	phone = db.Column(db.String(20), unique=True, nullable=False)
+	age = db.Column(db.String(10), unique=False, nullable=True)
 	tag = db.Column(db.String(30), unique=False, nullable=True, default='CREATED')
 	last_response = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
 
@@ -34,5 +36,7 @@ class User(db.Model):
 			self.sex = kwarg.get('sex')
 		if 'phone' in kwarg.keys():
 			self.phone = kwarg.get('phone')
+		if 'age' in kwarg.keys():
+			self.phone = kwarg.get('age')
 		if 'tag' in kwarg.keys():
 			self.tag = kwarg.get('tag')

@@ -1,0 +1,138 @@
+{% extends "/dashboard/base.html" %}
+{% block header %}
+{{ super() }}
+<link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/dashboard/style.css') }}">
+<script src="{{ url_for('static',filename='js/message.js') }}"></script>
+{% endblock %}
+{% block main %}
+<div class="card-activity card">
+	<div class="card-title">
+		<h2>Execution Command Line</h2>
+	</div>
+	<div class="card-body">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore voluptatibus perspiciatis mollitia qui totam fuga, hic nostrum officia voluptas corrupti ab doloremque facilis ut quis quae dolores reiciendis deleniti! Qui!</p>
+	<a href="#" class="btn">See more...</a>
+	</div>
+</div>
+<div class="card-info card">
+	<div class="card-title">
+		<h2>CUSTOM MESSAGES AND WORKFLOW</h2>
+	</div>
+	<div class="card-body">
+		<table class="table">
+		  <thead>
+		  	<div class="col-xs-4"></div>
+			<div class="col-xs-3"></div>
+	  		<div class="input-group col-xs-5">
+		        <button class="btn btn-default" type="button" id="create-btn">Add Tag</button>
+		    </div>
+		    <tr>
+		      <th scope="col">#</th>
+		      {% for head in header %}
+		      <th scope="col">{{ head }}</th>
+		      {% endfor %}
+		    </tr>
+		  </thead>
+		  <tbody id='js-tbody'>
+		      {% for msg in messages %}
+		      <tr data-id="{{ msg.id }}">
+			      <th scope="row">{{ msg.id }}</th>
+			      <td>{{ msg.tag }}</td>
+			      <td>{{ msg.tru_tag }}</td>
+			      <td>{{ msg.fal_tag }}</td>
+			      <td>{{ msg.el_tag }}</td>
+			      <td>{{ msg.content }}</td>
+		  	  </tr>
+		      {% endfor %}
+		  </tbody>
+		</table>
+	</div>	
+</div>
+<div class="card-activity card">
+	<div class="card-title">
+		<h2>OPERATING PHONE NUMBERS</h2>
+	</div>
+	<div class="card-body">
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">First</th>
+		      <th scope="col">Last</th>
+		      <th scope="col">Handle</th>
+		      <th scope="col">Status</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <th scope="row">1</th>
+		      <td>Mark</td>
+		      <td>Otto</td>
+		      <td>@mdo</td>
+		      <td>131313435</td>
+		    </tr>
+		    <tr>
+		      <th scope="row">2</th>
+		      <td>Jacob</td>
+		      <td>Thornton</td>
+		      <td>@fat</td>
+		      <td>131313435</td>
+		    </tr>
+		  </tbody>
+		</table>
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolore voluptatibus perspiciatis mollitia qui totam fuga, hic nostrum officia voluptas corrupti ab doloremque facilis ut quis quae dolores reiciendis deleniti! Qui!</p>
+	<a href="#" class="btn">See more...</a>
+	</div>
+</div>
+{% endblock %}
+{% block dialog %}
+<div class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Tag</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+        	{{ input_entry('tag', 'Tag Name') }}
+		  	{{ selector_entry('tru_tag', 'Case 1 Tag', tags) }}
+		    {{ input_entry('tru_indicator', 'Indicator') }}
+		  	{{ selector_entry('fal_tag', 'Case 2 Tag', tags) }}
+		  	{{ input_entry('fal_indicator', 'Indicator') }}
+		  	{{ selector_entry('el_tag', 'Case 3 Tag', tags) }}
+		  <div class="form-group">
+		    <label for="content">Auto Response</label>
+		    <textarea class="form-control" id="content" rows="4"></textarea>
+		  </div>
+		</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" id='delete-tag'>Delete</button>
+        <button type="button" class="btn btn-primary" id='save-change'>Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% macro input_entry(name, title) -%}
+<div class="form-group">
+	<label for='{{ name }}'>{{ title }}</label>
+	<input type="text" class="form-control" id="{{ name }}" name='{{ name }}'>
+</div>
+{%- endmacro %}
+
+{% macro selector_entry(name, title, tags) -%}
+<div class="form-group">
+	<label>{{ title }}</label>
+	<select class="form-control selectpicker" id="{{ name }}">
+	  	{% for tag in tags %}
+		<option>{{ tag.tag }}</option>
+		{% endfor %}
+	</select>
+</div>
+{%- endmacro %}

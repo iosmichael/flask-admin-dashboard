@@ -12,9 +12,9 @@ DEFAULT_CARRIER = "+13317041126"
 
 def auto_reply(form):
 	answer = form['Body']
-	phone = form['From']
+	phone = form['From'][2:]
 	INFO = create_record(False, phone, DEFAULT_CARRIER, answer)
-	user, _ = query_object('User', filters={'phone': phone[2:]})
+	user, _ = query_object('User', filters={'phone': phone})
 	tag = get_tag(user.tag)
 	if tag is not None and is_final(tag) is False:
 		next_tag_node = next_tag(answer, tag)
@@ -22,12 +22,14 @@ def auto_reply(form):
 			update_user_tag(user.id, next_tag_node.tag)
 			#twilio api
 			INFO = create_record(True, phone, DEFAULT_CARRIER, next_tag_node.content)
+			print(INFO)
 			return next_tag_node.content
 	INFO = create_record(True, phone, DEFAULT_CARRIER, "I will contact with you shortly")
 	return "I will contact with you shortly"
 
 def send_msg(phone, message):
 	#twilio api
+	'''
 	client = Client(ACCOUND_SID, AUTH_TOKEN)
 	msg = client.messages.\
 	create(
@@ -35,6 +37,7 @@ def send_msg(phone, message):
     	body=message,
     	from_=DEFAULT_CARRIER
     )
+    '''
 	create_record(True, phone, DEFAULT_CARRIER, message)
 	return message
 

@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap Material Admin by Bootstrapious.com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="css/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <link rel="stylesheet" href="css/right-side.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+  </head>
+  <body>
+    <div class="page">
+      <!-- Main Navbar-->
+      <header class="header">
+        <nav class="navbar">
+          <!-- Search Box-->
+          <div class="search-box">
+            <button class="dismiss"><i class="icon-close"></i></button>
+            <form id="searchForm" action="#" role="search">
+              <input type="phone" placeholder="What phone number are you looking for..." class="form-control">
+            </form>
+          </div>
+          <div class="container-fluid">
+            <div class="navbar-holder d-flex align-items-center justify-content-between">
+              <!-- Navbar Header-->
+              <div class="navbar-header">
+                <!-- Navbar Brand --><a href="index.html" class="navbar-brand d-none d-sm-inline-block">
+                  <div class="brand-text d-none d-lg-inline-block"><span>Message </span><strong>Dashboard</strong></div>
+                  <div class="brand-text d-none d-sm-inline-block d-lg-none"><strong>MD</strong></div></a>
+                <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
+              </div>
+              <!-- Navbar Menu -->
+              <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                <!-- Search-->
+                <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li>
+                <!-- Messages                        -->
+                <li class="nav-item dropdown"> <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope-o"></i><span class="badge bg-orange badge-corner">10</span></a>
+                  <ul aria-labelledby="notifications" class="dropdown-menu">
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
+                        <div class="msg-profile"> <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-body">
+                          <h3 class="h5">Jason Doe</h3><span>Sent You Message</span>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
+                        <div class="msg-profile"> <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-body">
+                          <h3 class="h5">Frank Williams</h3><span>Sent You Message</span>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item d-flex"> 
+                        <div class="msg-profile"> <img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                        <div class="msg-body">
+                          <h3 class="h5">Ashley Wood</h3><span>Sent You Message</span>
+                        </div></a></li>
+                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>Read all messages   </strong></a></li>
+                  </ul>
+                </li>
+                <!-- Languages dropdown    -->
+                <li class="nav-item dropdown"><a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">Data</span></a>
+                  <ul aria-labelledby="languages" class="dropdown-menu">
+                    <li><a data-toggle="modal" data-target="#file-form" class="dropdown-item"> <img src="img/flags/16/DE.png" alt="English" class="mr-2">Import CSV File</a></li>
+                    <li><a data-toggle="modal" data-target="#new-form" class="dropdown-item"> <img src="img/flags/16/FR.png" alt="English" class="mr-2">Add Data Entry                                         </a></li>
+                  </ul>
+                </li>
+                <!-- Logout    -->
+                <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline">Logout</span><i class="fa fa-sign-out"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <div class="page-content d-flex align-items-stretch"> 
+        <!-- Side Navbar -->
+        <nav class="side-navbar">
+          <!-- Sidebar Header-->
+          <div class="sidebar-header d-flex align-items-center">
+            <div class="avatar"><img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+            <div class="title">
+              <h1 class="h4">Stephen Temple</h1>
+              <p>Insurance Agent</p>
+            </div>
+          </div>
+          <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+          <ul class="list-unstyled">
+            <li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>
+            <li><a data-toggle="modal" data-target="#detail-form"> <i class="icon-grid"></i>Operators </a></li>
+          </ul>
+        </nav>
+        <div class="content-inner">
+          <!-- Page Header-->
+          <header class="page-header">
+            <div class="container-fluid">
+              <h2 class="no-margin-bottom">Dashboard</h2>
+            </div>
+          </header>
+          <!-- Dashboard Counts Section-->
+          <section class="dashboard-counts no-padding-bottom">
+            <div class="container-fluid">
+              <div class="row bg-white has-shadow">
+                <!-- Item -->
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-violet"><i class="icon-user"></i></div>
+                    <div class="title"><span>New<br>Clients</span>
+                      <div class="progress">
+                        <div role="progressbar" style="width: 25%; height: 4px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
+                      </div>
+                    </div>
+                    <div class="number"><strong>25</strong></div>
+                  </div>
+                </div>
+                <!-- Item -->
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-red"><i class="icon-padnote"></i></div>
+                    <div class="title"><span>Work<br>Orders</span>
+                      <div class="progress">
+                        <div role="progressbar" style="width: 70%; height: 4px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-red"></div>
+                      </div>
+                    </div>
+                    <div class="number"><strong>70</strong></div>
+                  </div>
+                </div>
+                <!-- Item -->
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-green"><i class="icon-bill"></i></div>
+                    <div class="title"><span>New<br>Invoices</span>
+                      <div class="progress">
+                        <div role="progressbar" style="width: 40%; height: 4px;" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-green"></div>
+                      </div>
+                    </div>
+                    <div class="number"><strong>40</strong></div>
+                  </div>
+                </div>
+                <!-- Item -->
+                <div class="col-xl-3 col-sm-6">
+                  <div class="item d-flex align-items-center">
+                    <div class="icon bg-orange"><i class="icon-check"></i></div>
+                    <div class="title"><span>Open<br>Cases</span>
+                      <div class="progress">
+                        <div role="progressbar" style="width: 50%; height: 4px;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
+                      </div>
+                    </div>
+                    <div class="number"><strong>50</strong></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="tables">   
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-12">
+                  <div class="card">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                      </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Management Table</h3>
+                    </div>
+                    <div class="card-body">
+                      <div class="table-responsive">
+                        <table class="table">
+                          <thead>
+                            <tr>
+                              <th>#</th>
+                              <th>First Name</th>
+                              <th>Last Name</th>
+                              <th>Username</th>
+                              <th>Tag</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr>
+                              <th scope="row">1</th>
+                              <td>Mark</td>
+                              <td>Otto</td>
+                              <td>@mdo</td>
+                              <td><i class="icon-user bg-violet"></i></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">2</th>
+                              <td>Jacob</td>
+                              <td>Thornton</td>
+                              <td>@fat</td>
+                              <td><i class="icon-user bg-violet"></i></td>
+                            </tr>
+                            <tr>
+                              <th scope="row">3</th>
+                              <td>Larry</td>
+                              <td>the Bird</td>
+                              <td>@twitter</td>
+                              <td><i class="icon-user bg-violet"></i></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        <ul class="pagination">
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Previous">
+                              <span aria-hidden="true">&laquo;</span>
+                              <span class="sr-only">Previous</span>
+                            </a>
+                          </li>
+                          <li class="page-item"><a class="page-link" href="#">1</a></li>
+                          <li class="page-item"><a class="page-link" href="#">2</a></li>
+                          <li class="page-item"><a class="page-link" href="#">3</a></li>
+                          <li class="page-item"><a class="page-link" href="#">4</a></li>
+                          <li class="page-item"><a class="page-link" href="#">5</a></li>
+                          <li class="page-item">
+                            <a class="page-link" href="#" aria-label="Next">
+                              <span aria-hidden="true">&raquo;</span>
+                              <span class="sr-only">Next</span>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!--Detail Form Modal-->
+          <div class="modal right fade" id="detail-form" tabindex="-1" role="dialog" aria-labelledby="Detail Form">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                  <div class="card">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                      </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Message Form</h3>
+                    </div>
+                    <div class="card-body">
+                      <form>
+                        <div class="form-group">       
+                          <label class="form-control-label">New Message</label>
+                          <textarea type="text" placeholder="textarea" class="form-control" rows="4"></textarea>
+                        </div>
+                        <div class="form-group">       
+                          <input type="submit" value="Send" class="btn btn-primary">
+                        </div>
+                      </form>
+                      <div class="item">
+                        <div class="row">
+                          <div class="col-3 date-holder text-right">
+                            <div class="icon"><i class="icon-clock"></i></div>
+                            <div class="date"> <small>6:00 am</small></div>
+                          </div>
+                          <div class="col-9 content">
+                            <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item">
+                        <div class="row">
+                          <div class="col-3 date-holder text-right">
+                            <div class="icon"><i class="icon-clock"></i></div>
+                            <div class="date"> <small>6:00 am</small></div>
+                          </div>
+                          <div class="col-9 content">
+                            <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</small>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="item">
+                        <div class="row">
+                          <div class="col-3 date-holder text-right">
+                            <div class="icon"><i class="icon-clock"></i></div>
+                            <div class="date"> <small>6:00 am</small></div>
+                          </div>
+                          <div class="col-9 content">
+                            <small>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                      </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">Info Form</h3>
+                    </div>
+                    <div class="card-body">
+                      <div class="item d-flex">
+                        <input type="checkbox" id="input-1" name="input-1" class="checkbox-template">
+                        <label for="input-1">Enable Update on User Information</label>
+                      </div>
+                      <form>
+                        <div class="form-group">
+                          <label class="form-control-label">Email</label>
+                          <input type="email" placeholder="Email Address" class="form-control">
+                        </div>
+                        <div class="form-group">       
+                          <label class="form-control-label">Password</label>
+                          <input type="password" placeholder="Password" class="form-control">
+                        </div>
+                        <div class="form-group">       
+                          <input type="submit" value="Signin" class="btn btn-primary">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              </div><!-- modal-content -->
+            </div><!-- modal-dialog -->
+          </div>
+          <!--Modal-->
+
+          <!--New Form Modal-->
+          <div class="modal right fade" id="new-form" tabindex="-1" role="dialog" aria-labelledby="New Form">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                  <div class="card">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                      </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">New Form</h3>
+                    </div>
+                    <div class="card-body">
+                      <form>
+                        <div class="form-group">
+                          <label class="form-control-label">Email</label>
+                          <input type="email" placeholder="Email Address" class="form-control">
+                        </div>
+                        <div class="form-group">       
+                          <label class="form-control-label">Password</label>
+                          <input type="password" placeholder="Password" class="form-control">
+                        </div>
+                        <div class="form-group">       
+                          <label class="form-control-label">Tag</label>
+                          <select class="form-control">
+                            <option>Created</option>
+                            <option>Pending</option>
+                          </select>
+                        </div>
+                        <div class="form-group">       
+                          <input type="submit" value="Signin" class="btn btn-primary">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              </div><!-- modal-content -->
+            </div><!-- modal-dialog -->
+          </div>
+          <!--Modal-->
+
+          <!--File Import Modal-->
+          <div class="modal right fade" id="file-form" tabindex="-1" role="dialog" aria-labelledby="File Form">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                </div>
+
+                <div class="modal-body">
+                  <div class="card">
+                    <div class="card-close">
+                      <div class="dropdown">
+                        <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+                        <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                      </div>
+                    </div>
+                    <div class="card-header d-flex align-items-center">
+                      <h3 class="h4">File Form</h3>
+                    </div>
+                    <div class="card-body">
+                      <h4 class="h4">Requirement</h4>
+                      <p>
+                        CSV data file must contain basic user columns: 
+                      </p>
+                      <ul>
+                        <li>
+                          first name (*), last name(*), dob, sex
+                        </li>
+                        <li>
+                          phone (*), zipcode, state
+                        </li>
+                      </ul>
+                      <form>
+                        <div class="form-group">
+                          <label class="form-control-label">Import CSV File</label>
+                          <input type="file" placeholder="CSV File" class="form-control">
+                        </div>
+                        <div class="form-group">       
+                          <input type="submit" value="Signin" class="btn btn-primary">
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+
+              </div><!-- modal-content -->
+            </div><!-- modal-dialog -->
+          </div>
+          <!--Modal-->
+
+          <!-- Page Footer-->
+          <footer class="main-footer">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-sm-6">
+                  <p>Admin Dashboard &copy; 2017-2019</p>
+                </div>
+                <div class="col-sm-6 text-right">
+                  <p>Made with Love by Michael & <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
+                  <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+                </div>
+              </div>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript files-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper.js/umd/popper.min.js"> </script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
+    <script src="vendor/chart.js/Chart.min.js"></script>
+    <script src="vendor/jquery-validation/jquery.validate.min.js"></script>
+    <script src="js/charts-home.js"></script>
+    <!-- Main File-->
+    <script src="js/front.js"></script>
+  </body>
+</html>

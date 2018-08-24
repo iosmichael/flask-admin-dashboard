@@ -24,7 +24,7 @@ def admin():
     page, _ = paginate('User', MAX_NUM_PER_PAGE)
     users = page.items
     tags = tag_options()
-    return render_template('dashboard/index.html', header=header, users=users, tags = tags)
+    return render_template('dashboard/dashboard.html', header=header, users=users, tags = tags)
 
 @app.route('/settings')
 def settings():
@@ -32,7 +32,7 @@ def settings():
     page, _ = paginate('Message', MAX_NUM_PER_PAGE)
     messages = page.items
     tags = tag_options(exclude_created=True)
-    return render_template('workflow/index.html', header=header, messages=messages, tags = tags)
+    return render_template('dashboard/workflow.html', header=header, messages=messages, tags = tags)
 
 #API Endpoints - DATA
 
@@ -130,4 +130,4 @@ def reply():
 
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', debug=True, port=80)
+	app.run(host='0.0.0.0', debug=True, port=5000)
