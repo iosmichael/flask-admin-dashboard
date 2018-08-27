@@ -83,21 +83,8 @@ def find_tags():
         print(tag.content)
 
 with app.test_request_context():
-    # test_auto_reply()
-    # auto_reply({
-    #     'Body': 'Yes is my answer',
-    #     'Phone': '9549295555'
-    #     })
-    # records, _ =query_all('Record', filters={'phone':'9549295555'})
-    # for record in records:
-    #     print(record)
-    # update_object('Message', 5, {'content': 'change to this'})
-    # uid = 5
-    # obj, _ = query_object('Message', filters={'id':uid})
-    # print(drop_object(obj))
-    # for user in users:
-    #     print(user.tag)
-    # print(find_tags())
-    reset_all()
-    reset_workflow()
+    page, _ = paginate('User', 20)
+    users = page.items
+    for user in users:
+        print(user.tag)
     exit(0)

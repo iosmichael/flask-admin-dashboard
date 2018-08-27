@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  {% block header %}
+    {% include '/_header.html' %}
+  {% endblock %}
+  <body>
+    <div class="page">
+      <!-- Main Navbar-->
+      {% include '/_navbar.html' %}
+      <div class="page-content d-flex align-items-stretch"> 
+        {% include '/_sidebar.html' %}
+        {% block main %}
+        {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

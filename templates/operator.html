@@ -1,0 +1,28 @@
+{% extends "/base.html" %}
+
+{% block header %}
+  {{ super() }}
+  <script src="{{ url_for('static',filename='js/index/ui-front.js') }}"></script>
+{% endblock %}
+
+{% block main %}
+<div class="content-inner">
+  <!-- Page Header-->
+  <header class="page-header">
+    <div class="container-fluid">
+      <h2 class="no-margin-bottom">Operator</h2>
+    </div>
+  </header>
+  {% include "/operator/_settings.html"%}
+  {% with %}
+  	{% include "/operator/_tables.html" %}
+  {% endwith %}
+  {% include "/operator/_api.html" %}
+  {% include "/operator/_profile.html" %}
+  {% include "/index/_modal-detail.html" %}
+  {% include "/index/_modal-new.html" %}
+  {% include "/index/_modal-file.html" %}
+  <!-- Page Footer-->
+  {% include '/_footer.html'%}
+</div>
+{% endblock %}

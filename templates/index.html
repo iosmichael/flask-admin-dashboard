@@ -1,0 +1,26 @@
+{% extends "/base.html" %}
+
+{% block header %}
+  {{ super() }}
+  <script src="{{ url_for('static',filename='js/index/ui-front.js') }}"></script>
+{% endblock %}
+
+{% block main %}
+<div class="content-inner">
+  <!-- Page Header-->
+  <header class="page-header">
+    <div class="container-fluid">
+      <h2 class="no-margin-bottom">Dashboard</h2>
+    </div>
+  </header>
+  {% include "/index/_summary.html" %}
+  {% with data=data.table%}
+  	{% include "/index/_tables.html" %}
+  {% endwith %}
+  {% include "/index/_modal-detail.html" %}
+  {% include "/index/_modal-new.html" %}
+  {% include "/index/_modal-file.html" %}
+  <!-- Page Footer-->
+  {% include '/_footer.html'%}
+</div>
+{% endblock %}

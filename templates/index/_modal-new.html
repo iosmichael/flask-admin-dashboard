@@ -1,0 +1,46 @@
+{% block modal_detail %}
+<!--New Form Modal-->
+<div class="modal right fade" id="new-form" tabindex="-1" role="dialog" aria-labelledby="New Form">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+    <div class="modal-body">
+      <div class="card">
+        <div class="card-close">
+          <div class="dropdown">
+            <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+            <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+          </div>
+        </div>
+        <div class="card-header d-flex align-items-center">
+          <h3 class="h4">New Form</h3>
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="form-group-material">
+              <input id="register-username" type="text" name="registerUsername" required class="input-material">
+              <label for="register-username" class="label-material">Username</label>
+            </div>
+            <div class="form-group-material">
+              <input id="register-email" type="email" name="registerEmail" required class="input-material">
+              <label for="register-email" class="label-material">Email Address      </label>
+            </div>
+            <div class="form-group-material">
+              <input id="register-password" type="password" name="registerPassword" required class="input-material">
+              <label for="register-password" class="label-material">Password     </label>
+            </div>
+            <div class="form-group">       
+              <input type="submit" value="Create" class="btn btn-success">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- modal-content -->
+</div><!-- modal-dialog -->
+</div>
+<!--Modal-->
+{% endblock %}

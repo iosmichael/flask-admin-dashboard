@@ -2,10 +2,10 @@
 this is the main controller that provides the general orm mapping to all different tables
 '''
 import os, csv
-from .model.db import db
-from .model.user import User
-from .model.message import Message
-from .model.record import Record
+from admin.extensions import db
+from admin.model.user import User
+from admin.model.message import Message
+from admin.model.record import Record
 from sqlalchemy.exc import IntegrityError
 
 UPLOAD_FOLDER = '/tmp/flask/upload'

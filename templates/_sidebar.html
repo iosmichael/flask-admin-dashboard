@@ -1,0 +1,18 @@
+{% block sidebar %}
+<!-- Side Navbar -->
+<nav class="side-navbar">
+  <!-- Sidebar Header-->
+  <div class="sidebar-header d-flex align-items-center">
+    <div class="avatar"><img src="{{ url_for('static',filename='img/avatar-1.jpg') }}" alt="..." class="img-fluid rounded-circle"></div>
+    <div class="title">
+      <h1 class="h4">Stephen Temple</h1>
+      <p>Insurance Agent</p>
+    </div>
+  </div>
+  <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
+  <ul class="list-unstyled">
+    <li class="active"><a href="/admin"> <i class="icon-home"></i>Home </a></li>
+    <li><a href="/operators"> <i class="icon-grid"></i>Operators </a></li>
+  </ul>
+</nav>
+{% endblock %}

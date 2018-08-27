@@ -1,6 +1,6 @@
 from .main_controller import *
-from twilio.rest import Client
-from twilio.twiml.messaging_response import MessagingResponse
+from admin.twilio.rest import Client
+from admin.twilio.twiml.messaging_response import MessagingResponse
 
 ACCOUND_SID = "ACd2472e0ee6d04299378549ffbfb96b60"
 AUTH_TOKEN = "a1ae82e7e6267045be699fd464a7311b"

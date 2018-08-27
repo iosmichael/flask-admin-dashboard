@@ -1,0 +1,52 @@
+{% block modal_file %}
+<!--File Import Modal-->
+<div class="modal right fade" id="file-form" tabindex="-1" role="dialog" aria-labelledby="File Form">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    </div>
+
+    <div class="modal-body">
+      <div class="card">
+        <div class="card-close">
+          <div class="dropdown">
+            <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
+            <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+          </div>
+        </div>
+        <div class="card-header d-flex align-items-center">
+          <h3 class="h4">File Form</h3>
+        </div>
+        <div class="card-body">
+          <h4 class="h4">Requirement</h4>
+          <p>
+            CSV data file must contain basic user columns: 
+          </p>
+          <ul>
+            <li>
+              first name (*), last name(*), dob, sex
+            </li>
+            <li>
+              phone (*), zipcode, state
+            </li>
+          </ul>
+          <form>
+            <div class="form-group">
+              <label for="fileInput" class="form-control-label">File input</label>
+              <input id="fileInput" type="file" class="form-control-file">
+            </div>
+            <div class="form-group">       
+              <input type="submit" value="Upload" class="btn btn-primary" id='file-upload'>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- modal-content -->
+</div><!-- modal-dialog -->
+</div>
+<!--Modal-->
+{% endblock %}
