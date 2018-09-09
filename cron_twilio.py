@@ -6,6 +6,8 @@ from admin.controller.main_controller import *
 from admin.controller.firebase_controller import *
 from admin.extensions import *
 
+ACCOUNT_SID = "ACd2472e0ee6d04299378549ffbfb96b60"
+AUTH_TOKEN = "a1ae82e7e6267045be699fd464a7311b"
 '''
 USER STATES:
 	- CREATED
