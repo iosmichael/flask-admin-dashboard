@@ -23,10 +23,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:////' + os.path.join(basedir, 'da
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-MAX_MSG_PER_OPERATOR = 20
+MAX_MSG_PER_OPERATOR = 2
 JOB_ORDER = ['MANUAL', 'AUTOMATION']
 
-def fetch_jobs_with_operator(operator):
+def fetch_jobs_with_operator(operator, MAX_MSG_PER_OPERATOR = 20):
 	count = 0
 	print(operator)
 	jobs = firebase_database.child('/jobs').order_by_child('operator').equal_to(str(operator['phone'])).get().val()
@@ -36,7 +36,7 @@ def fetch_jobs_with_operator(operator):
 		for job in jobs_with_tag:
 			execute_job(job)
 			count += 1
-			if count == 20:
+			if count == MAX_MSG_PER_OPERATOR:
 				return
 
 def execute_job(job):
@@ -51,7 +51,7 @@ def twilio_send_msg(job):
 def run_job_scripts():
 	operators = get_operators()
 	for operator in operators:
-		fetch_jobs_with_operator(operator)
+		fetch_jobs_with_operator(operator, MAX_MSG_PER_OPERATOR)
 
 with app.app_context():
 	run_job_scripts()

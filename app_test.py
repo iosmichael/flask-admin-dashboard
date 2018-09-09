@@ -12,18 +12,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:////' + os.path.join(basedir, 'da
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-def create_record(phone, operator, content):
-	record_data = {
-		'operator': operator, 
-		'phone': phone, 
-		'content': content, 
-		'is_client': False,
-		'time': datetime.datetime.now()
-	}
-	record = build_object("Record", record_data)
-	print(record)
-	return record
-
 def search_delivered_record():
 	page, _ = paginate_with_filters('Record', 20, page=3, filters={'delivered': True})
 	for record in page.items:
@@ -38,5 +26,9 @@ with app.app_context():
 	# jobs_with_tag = [{"id": key, "phone": jobs[key]['phone'], "operator":jobs[key]['operator'], "content": jobs[key]['content'], "record_id": jobs[key]['record_id']} for key in jobs.keys() if jobs[key]['tag'] == "AUTOMATION"]
 	# print(jobs_with_tag)
 	# sys.exit("Terminated")
-	search_delivered_record()
+	page, _ = paginate_with_filters('User', 20, page=1, filters={'tag': 'ARCHIVED'})
+	for user in page.items:
+		print(user)
+		print(user.operator)
+		print(user.phone)
 	sys.exit('Terminated')

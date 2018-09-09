@@ -9,12 +9,13 @@ class User(db.Model):
 
 	state = db.Column(db.String(20), unique=False, nullable=True, default="USA")
 	zipcode = db.Column(db.String(20), unique=False, nullable=True, default="00000")
-	dob = db.Column(db.String(20), unique=False, nullable=True)
+	dob = db.Column(db.String(20), unique=False, nullable=True, default="N/A")
 	sex = db.Column(db.String(10), unique=False, nullable=True, default="N/A")
 	age = db.Column(db.String(10), unique=False, nullable=True)
 	tag = db.Column(db.String(30), unique=False, nullable=True, default='CREATED')
 	operator = db.Column(db.String(30), unique = False, nullable=False, default='UNASSIGNED')
 	last_response = db.Column(db.DateTime, nullable=True, default=datetime.utcnow)
+	meta = db.Column(db.String(30), unique=False, nullable=True)
 
 	def as_dict(self):
 		data = {c.name: getattr(self, c.name) for c in self.__table__.columns}
@@ -41,3 +42,5 @@ class User(db.Model):
 			self.phone = kwarg.get('age')
 		if 'tag' in kwarg.keys():
 			self.tag = kwarg.get('tag')
+		if 'operator' in kwarg.keys():
+			self.operator = kwarg.get('operator')

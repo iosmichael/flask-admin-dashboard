@@ -25,7 +25,7 @@ db.init_app(app)
 
 TEMPLATE_CONTENT = "This is a testing job."
 
-MAX_ASSIGNMENT_PER_OPERATOR = 20
+MAX_ASSIGNMENT_PER_OPERATOR = 2
 
 def assign_job(operator, content):
 	filter_dict = {
@@ -46,7 +46,8 @@ def assign_job(operator, content):
 		}
 		firebase_database.child('/jobs').push(data)
 		print('successfully pushed job into firebase')
-		update_object('User', user.id, { 'operator': operator, 'tag': 'QUEUEING' })
+		MSG = update_object('User', user.id, { 'operator': operator['phone'], 'tag': 'ARCHIVED' })
+		print("update user object: " + MSG)
 
 def create_record(phone, operator, content):
 	record_data = {
