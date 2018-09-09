@@ -7,7 +7,6 @@ from admin.controller.main_controller import *
 #API Endpoints - DATA
 endpoints = Blueprint('endpoints', __name__, template_folder='templates')
 
-UPLOAD_FOLDER = '/tmp/flask/upload'
 MAX_NUM_PER_PAGE = 20
 
 @endpoints.route('/page/<name>/<page>', methods=['POST'])
@@ -58,31 +57,3 @@ def query_records(phone):
     records, _ = query_all_with_order('Record', filters={'phone': phone}, criterion='time')
     record_dicts = [record.as_dict() for record in records]
     return json.dumps(record_dicts)
-
-#file upload api
-#TODO: Add a spinner for file being uploaded
-@endpoints.route('/upload', methods=['POST'])
-def upload_file():
-    file = request.files['file']
-    # if user does not select file, browser also
-    # submit an empty part without filename
-    if file.filename == '':
-        flash('No selected file')
-        return redirect(request.url)
-    if file and allowed_file(file.filename):
-        file.save(os.path.join(UPLOAD_FOLDER, file.filename))
-        return redirect(url_for('endpoints.uploaded_file',
-                                filename=file.filename))
-
-@endpoints.route('/uploaded_file/<filename>')
-def uploaded_file(filename):
-    sign, msg = import_csv(filename)
-    if sign:
-        return 'success'
-    else:
-        return 'error'
-
-def allowed_file(filename):
-    ALLOWED_EXTENSIONS = ['csv']
-    return '.' in filename and \
-        filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

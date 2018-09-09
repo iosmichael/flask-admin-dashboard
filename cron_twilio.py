@@ -1,5 +1,5 @@
 import datetime
-import sys
+import sys, os
 from flask import Flask, request, render_template, redirect, url_for, make_response
 from admin.controller.main_controller import *
 from admin.controller.firebase_controller import *
@@ -18,9 +18,9 @@ JOB STATES:
 '''
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/database.db'
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:////' + os.path.join(basedir, 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['UPLOAD_FOLDER'] = '/tmp/flask/upload'
 db.init_app(app)
 
 MAX_MSG_PER_OPERATOR = 20
@@ -47,7 +47,6 @@ def execute_job(job):
 
 def twilio_send_msg(job):
 	print("sending twilio job: {} from {} to {} at {}".format(job['content'], job['operator'], job['phone'], job['last_update']))
-	pass
 
 def run_job_scripts():
 	operators = get_operators()

@@ -1,5 +1,5 @@
 import datetime
-import sys
+import sys, os
 from flask import Flask, request, render_template, redirect, url_for, make_response
 from admin.controller.main_controller import *
 from admin.controller.firebase_controller import *
@@ -18,9 +18,9 @@ JOB STATES:
 '''
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/database.db'
+basedir = os.path.abspath(os.path.dirname(__file__))
+app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:////' + os.path.join(basedir, 'database.db')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['UPLOAD_FOLDER'] = '/tmp/flask/upload'
 db.init_app(app)
 
 TEMPLATE_CONTENT = "This is a testing job."

@@ -8,7 +8,6 @@ from admin.model.message import Message
 from admin.model.record import Record
 from sqlalchemy.exc import IntegrityError
 
-UPLOAD_FOLDER = '/tmp/flask/upload'
 ERROR_MESSAGE = "ERROR ---"
 SUCCESS_MESSAGE = "SUCCESS ---"
 
@@ -103,10 +102,7 @@ def build_object(table, data):
 		return None
 	if table in table_mapping_objects.keys():
 		if table == "User":
-			try:
-				obj = table_mapping_objects[table](**data)
-			except IntegrityError as e:
-				return None
+			return table_mapping_objects[table](**data)
 		else:
 			return table_mapping_objects[table](**data)
 	return None
@@ -188,23 +184,3 @@ def data_column_map(row, index_map):
 		'sex':row[index_map['sex']],
 		'phone':row[index_map['phone']]
 	}
-
-def import_csv(filename):
-	path = os.path.join(UPLOAD_FOLDER, filename)
-	with open(path, 'r') as f:
-		reader = csv.reader(f)
-		content = ""
-		num = 0
-		index_map = {}
-		for row in reader:
-			if num == 0:
-				index_map = map_column_index(row)
-				if index_map is None:
-					return False, 'import column error'
-			else:
-				if len(row) >= 7:
-					item = build_object('User', data_column_map(row, index_map))
-					INFO = add_object('User', item)
-			num += 1
-		return True, 'success import file path: %s' % path
-	return False, 'error'
