@@ -1,4 +1,4 @@
-from admin.model.db import db
+from admin.extensions import db
 from admin.model.user import User
 from admin.model.message import Message
 from admin.model.record import Record

@@ -9,8 +9,28 @@ $(function () {
 	/*
 	Click event methods
 	*/
+
+	$("input[type='text']#searchInput").change(function(){
+		if ($(this).val() == "") return;
+		$.ajax({
+	       url : '/search/'+$(this).val(),
+	       type : 'POST',
+	       processData: false,  // tell jQuery not to process the data
+	       contentType: false,  // tell jQuery not to set contentType
+	       dataType:'json',
+	       success : (data) => {
+		        console.log(data);
+				appendUser(data.items);
+				page = 1;
+				updatePage(page);
+	       }
+		}).fail(()=> {
+			alert('search error');
+		});
+	});
+
 	//click on page number
-	$(".page-item").click(function(){
+	$("a.page-link").click(function(){
 		let pageNumber = $(this).data('page');
 		if (pageNumber == null){
 			return
@@ -85,18 +105,18 @@ $(function () {
 
 	$('input#send-message').click(function(){
 		let message = $('textarea#new-message').val();	
-		let phone = $('input#phone').val();
+		let phone = $('input#phone-detail').val();
 		var formData = new FormData();
 		formData.append('phone',phone);
 		formData.append('message',message);
 		$.ajax({
-			url: '/send',
+			url: '/twilio/send',
 			method: 'POST',
 			data: formData,
 			processData: false,
 			contentType: false,
 			success: (data) => {
-				$('textarea#message').val('');
+				$('textarea#new-message').val('');
 				refreshRecords();
 			}
 		});
@@ -122,41 +142,81 @@ $(function () {
 		});
 	});
 
-	// //click on filter status button
-	// $("select#status-filter").change((e)=>{
-	// 	filterValue = $("select option:selected").val()
-	// 	var formData = new FormData();
-	// 	formData.append(filterKey, filterValue);
-	// 	$.ajax({
-	//        url : '/page/User/1',
-	//        type : 'POST',
-	//        data : formData,
-	//        processData: false,  // tell jQuery not to process the data
-	//        contentType: false,  // tell jQuery not to set contentType
-	//        dataType:'json',
-	//        success : (data) => {
-	// 	        console.log(data);
-	// 			appendUser(data.items);
-	// 			page = 1;
-	// 			updatePage(page);
-	//        }
-	// 	}).fail(()=> {
-	// 		alert('search error');
-	// 	});
-	// })
-
-	// $(".btn#status-filter-btn").click(function(){
-	// 	createModal();
-	// });
+	//click on filter status button
+	$("div#CREATED").click(()=>{
+		filterValue = "CREATED";
+		filterSearch();
+	})
+	//click on filter status button
+	$("div#POSITIVE").click(()=>{
+		filterValue = "POSITIVE";
+		filterSearch();
+	})
+	//click on filter status button
+	$("div#NEGATIVE").click(()=>{
+		filterValue = "NEGATIVE";
+		filterSearch();
+	})
+	//click on filter status button
+	$("div#ARCHIVED").click(()=>{
+		filterValue = "ARCHIVED";
+		filterSearch();
+	})
 
 	$('#enable-change').click(function(){ 
 		toggleReadonly();
 		console.log("enable change button pressed.") 
 	});
 
+	$('input#register-new-user').click(function(){
+		console.log('register new user');
+		var formData = new FormData();
+		let first_name = $('input#register-first-name').val();
+		let last_name = $('input#register-last-name').val();
+		let phone = $('input#register-phone').val();
+		formData.append('first_name', first_name);
+		formData.append('last_name', last_name);
+		formData.append('phone', phone);
+		$.ajax({
+			url : '/add/User',
+			type : 'POST',
+			data : formData,
+			processData: false,  // tell jQuery not to process the data
+			contentType: false,  // tell jQuery not to set contentType
+			success : (data) => {
+			    console.log(data);
+			    $('.modal#new-form').modal('hide');
+			}
+		}).fail(() => {
+			alert('add user error');
+		});
+	});
+
 	/*
 	UI update methods
 	*/
+	var filterSearch = () => {
+		console.log(filterValue);
+		var formData = new FormData();
+		formData.append(filterKey, filterValue);
+		$.ajax({
+	       url : '/page/User/1',
+	       type : 'POST',
+	       data : formData,
+	       processData: false,  // tell jQuery not to process the data
+	       contentType: false,  // tell jQuery not to set contentType
+	       dataType:'json',
+	       success : (data) => {
+		        console.log(data);
+				appendUser(data.items);
+				page = 1;
+				updatePage(page);
+	       }
+		}).fail(()=> {
+			alert('search error');
+		});
+	};
+
 	var appendUser = (users) => {
 		let body = $('#table-body').empty();
 		if (users == null) {
@@ -197,26 +257,16 @@ $(function () {
 	};
 
 	var appendRecord = (records) => {
-		// let body = $('div#records').empty();
-		// if (records == null){
-		// 	return;
-		// }
-		// let jrecords = records.map((record) => {
-		// 	var row = $("<div class='record'></div>");
-		// 	if (!record.receive) {
-		// 		row.append($("<strong></strong>").text('caller texted:'));
-		// 	}else{
-		// 		row.append($("<strong></strong>").text('bot texted:'));
-		// 	}
-		// 	row.append($("<br/>"));
-		// 	row.append($("<span></span>").text(record.content));
-		// 	row.append($("<br/>"));
-		// 	// row.append($("<span></span>").text(record.time));
-		// 	return row;
-		// })
-		// jrecords.forEach(juser => {
-		// 	body.append(juser);
-		// });
+		$('form.chat .messages').empty();
+		if (records == null){
+			return;
+		}
+		let jrecords = records.map((record) => {
+			//record.delivered
+			console.log(record);
+			responsiveChatPush('form.chat', record.is_delivered, record.is_client, record.time, record.content);
+			responsiveChatPush('form.chat', record.is_delivered, true, record.time, "This is a really long message. This is a really long message.");
+		})
 	}
 
 	var updateModal = function (data){
@@ -232,6 +282,7 @@ $(function () {
 		$("#zipcode-detail").val(data.zipcode);
 		$("#tag-detail").val(data.tag);
 		$("#last-detail").val(data.last_response);
+		console.log('/all/'+data.phone);
 		$.ajax({
 		   url : '/all/' + data.phone,
 	       dataType:'json',
@@ -313,5 +364,20 @@ $(function () {
 		$("input#user-delete").attr('disabled', allowChange);
 		allowChange = !allowChange;
 	}
+
+	var responsiveChatPush = (element, is_delivered, is_client, date, message) => {
+	    var originClass;
+	    if (is_client == false) {
+	        originClass = 'myMessage';
+	    } else {
+	        originClass = 'fromThem';
+	    }
+	    var deliver = is_delivered ? 'delivered' : 'pending';
+	    if (is_client) {
+	    	deliver = "";
+	    }
+    	$(element + ' .messages').append('<div class="message"><div class="' + originClass + '"><p>' + 
+    		message + '</p><date><b>' + deliver + '</b> ' + date + '</date></div></div>');
+	};
 
 });

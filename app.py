@@ -1,8 +1,7 @@
-import json
 import os
 from flask import Flask, request, render_template, redirect, url_for, make_response
-from flask_sqlalchemy import SQLAlchemy
-from .controller.main_controller import *
+from admin.controller.main_controller import *
+from admin.controller.firebase_controller import *
 from admin.extensions import db, firebase_auth, firebase_auth_manager
 from admin.routers.database_endpoints import endpoints
 from admin.routers.firebase_endpoints import firebase_endpoints
@@ -31,7 +30,8 @@ def index():
 
 @app.route('/operators')
 def operators():
-    return render_template('operator.html', data=None)
+    setting_dict = get_settings();
+    return render_template('operator.html', settings=setting_dict, data=None)
 
 @app.route('/login')
 def login():

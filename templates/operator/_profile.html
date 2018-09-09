@@ -17,14 +17,14 @@
               <form>
                 <div class="form-group">
                   <label class="form-control-label">Username</label>
-                  <input type="text" placeholder="Twilio Account SID" class="form-control" id="setting-profile-username" readonly>
+                  <input type="text" placeholder="Username" value="{{settings.profile.username}}" class="form-control" id="setting-profile-username" readonly>
                 </div>
                 <div class="form-group">
                   <label class="form-control-label">Title</label>
-                  <input type="text" placeholder="Insurance Agent" class="form-control" id="setting-profile-title" readonly>
+                  <input type="text" placeholder="Insurance Agent" value="{{settings.profile.title}}" class="form-control" id="setting-profile-title" readonly>
                 </div>
                 <div class="form-group">       
-                  <input type="submit" value="Update Profile Settings" class="btn btn-default" id="setting-profile-update">
+                  <input type="button" value="Update Profile Settings" class="btn btn-primary" id="setting-profile-update" disabled="disabled">
                 </div>
               </form>
             </div>

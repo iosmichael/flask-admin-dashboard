@@ -3,10 +3,11 @@ from datetime import datetime
 
 class Record(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
-	carrier = db.Column(db.String(30))
+	operator = db.Column(db.String(30))
 	phone = db.Column(db.String(30))
 	content = db.Column(db.String(300))
-	receive = db.Column(db.Boolean)
+	is_client = db.Column(db.Boolean)
+	delivered = db.Column(db.Boolean, default=False)
 	time = db.Column(db.DateTime, default=datetime.utcnow)
 
 	def as_dict(self):
@@ -15,5 +16,15 @@ class Record(db.Model):
 		return data
 
 	def __repr__(self):
-		return '<Record %s>' % (self.carrier + " " + self.phone + " " + self.content + ": " + self.time.strftime('%H:%M:%S %m/%d/%Y'))
+		return '<Record %s>' % (self.operator + " " + self.phone + " " + self.content + ": " + self.time.strftime('%H:%M:%S %m/%d/%Y'))
 	
+	def update(self, **kwarg):
+		if 'operator' in kwarg.keys():
+			self.operator = kwarg.get('operator')
+		if 'content' in kwarg.keys():
+			self.content = kwarg.get('content')
+		if 'time' in kwarg.keys():
+			self.time = kwarg.get('time')
+		if 'delivered' in kwarg.keys():
+			self.delivered = kwarg.get('delivered')
+			

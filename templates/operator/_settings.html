@@ -7,7 +7,7 @@
             <div class="card-close">
               <div class="dropdown">
                 <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a id="setting-info-edit" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
               </div>
             </div>
             <div class="card-header d-flex align-items-center">
@@ -17,18 +17,18 @@
               <form>
                 <div class="form-group">       
                   <label class="form-control-label">Auto Message</label>
-                  <textarea type="text" placeholder="textarea" class="form-control" rows="3" id="setting-auto-message"></textarea>
+                  <textarea type="text" placeholder="textarea" class="form-control" rows="3" id="setting-info-message" readonly="true">{{settings.info.autoMessage}}</textarea>
                 </div>
                 <div class="form-group">
                   <label class="form-control-label">Negative Reply Indicator</label>
-                  <input id="setting-reply-indicator" type="text" placeholder="Negative Reply Indicator" class="form-control" readonly>
+                  <input id="setting-info-indicator" type="text" placeholder="Negative Reply Indicator" value="{{settings.info.replyIndicator}}" class="form-control" readonly="true">
                 </div>
                 <div class="item d-flex">
-                  <input type="checkbox" id="setting-enable-scheduler" name="setting-enable-scheduler" class="checkbox-template">
-                  <label for="setting-enable-scheduler">Enable Scheduler</label>
+                  <input type="checkbox" id="setting-info-scheduler" name="setting-info-scheduler" class="checkbox-template" readonly="true" value="{{settings.info.enableScheduler}}">
+                  <label for="setting-info-scheduler">Enable Scheduler</label>
                 </div>
                 <div class="form-group">       
-                  <input type="submit" value="Update System Changes" class="btn btn-default">
+                  <input type="button" value="Update System Changes" class="btn btn-primary" id="setting-info-update" disabled="disabled">
                 </div>
               </form>
             </div>

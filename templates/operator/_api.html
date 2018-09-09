@@ -7,7 +7,7 @@
             <div class="card-close">
               <div class="dropdown">
                 <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a id="setting-twilio-edit" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
               </div>
             </div>
             <div class="card-header d-flex align-items-center">
@@ -17,14 +17,14 @@
               <form>
                 <div class="form-group">
                   <label class="form-control-label">Twilio Account SID</label>
-                  <input type="text" placeholder="Twilio Account SID" class="form-control" id="setting-twilio-accountSID" readonly>
+                  <input type="text" placeholder="Twilio Account SID" class="form-control" id="setting-twilio-accountSID" value="{{settings.api.twilioAccountSID}}" readonly>
                 </div>
                 <div class="form-group">
                   <label class="form-control-label">Twilio Authentication Token</label>
-                  <input type="text" placeholder="Twilio Authentication Token" class="form-control" id="setting-twilio-authToken" readonly>
+                  <input type="text" placeholder="Twilio Authentication Token" class="form-control" id="setting-twilio-authToken" value="{{settings.api.twilioAuthToken}}" readonly>
                 </div>
                 <div class="form-group">       
-                  <input type="submit" value="Update Twilio Settings" class="btn btn-default" id="setting-twilio-update">
+                  <input type="button" value="Update Twilio Settings" class="btn btn-primary" id="setting-twilio-update" disabled="disabled">
                 </div>
               </form>
             </div>

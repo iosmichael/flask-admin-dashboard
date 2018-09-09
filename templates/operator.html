@@ -2,7 +2,8 @@
 
 {% block header %}
   {{ super() }}
-  <script src="{{ url_for('static',filename='js/index/ui-front.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/operator/setting.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/operator/operator.js') }}"></script>
 {% endblock %}
 
 {% block main %}
@@ -13,14 +14,17 @@
       <h2 class="no-margin-bottom">Operator</h2>
     </div>
   </header>
-  {% include "/operator/_settings.html"%}
+  {% with settings = settings%}
+    {% include "/operator/_settings.html"%}
+  {% endwith %}
   {% with %}
   	{% include "/operator/_tables.html" %}
   {% endwith %}
-  {% include "/operator/_api.html" %}
-  {% include "/operator/_profile.html" %}
-  {% include "/index/_modal-detail.html" %}
-  {% include "/index/_modal-new.html" %}
+  {% with settings = settings %}
+    {% include "/operator/_api.html" %}
+    {% include "/operator/_profile.html" %}
+  {% endwith %}
+  {% include "/operator/_modal-new.html" %}
   {% include "/index/_modal-file.html" %}
   <!-- Page Footer-->
   {% include '/_footer.html'%}

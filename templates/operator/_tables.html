@@ -9,7 +9,7 @@
             <div class="card-close">
               <div class="dropdown">
                 <button type="button" id="closeCard1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle"><i class="fa fa-ellipsis-v"></i></button>
-                <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a href="#" class="dropdown-item edit"> <i class="fa fa-gear"></i>Edit</a></div>
+                <div aria-labelledby="closeCard1" class="dropdown-menu dropdown-menu-right has-shadow"><a href="#" class="dropdown-item remove"> <i class="fa fa-times"></i>Close</a><a data-toggle="modal" data-target="#new-twilio-form" class="dropdown-item edit"> <i class="fa fa-gear"></i>Add Twilio Phone</a></div>
               </div>
             </div>
             <div class="card-header d-flex align-items-center">
@@ -25,15 +25,10 @@
                     </tr>
                   </thead>
                   <tbody id="table-body">
-                    {% for user in data.users %}
-                      <tr data-id="{{ user.id }}">
-                        <th scope="row">{{ user.id }}</th>
-                        <td>{{ user.first_name + " " + user.last_name }}</td>
-                        <td>{{ user.state }}</td>
-                        <td>{{ user.zipcode }}</td>
-                        <td>{{ user.dob }}</td>
-                        <td>{{ user.sex }}</td>
-                        <td>{{ user.phone }}</td>
+                    {% for operator in data.operators %}
+                      <tr data-id="{{ operator.id }}">
+                        <th scope="row">{{ operator.id }}</th>
+                        <td>{{ operator.phone }}</td>
                       </tr>
                     {% endfor %}
                   </tbody>

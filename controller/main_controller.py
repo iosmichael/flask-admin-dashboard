@@ -26,7 +26,7 @@ table_mapping_headers = {
 table_mapping_keys = {
 	"User": ['first_name', 'last_name', 'zipcode', 'state', 'dob', 'sex', 'phone', 'tag'],
 	"Message": ['tag','content','tru_indicator','fal_indicator','tru_tag', 'fal_tag','el_tag'],
-	"Record": ['carrier', 'phone', 'content', 'receive']
+	"Record": ['operator', 'phone', 'content', 'is_client', 'delivered', 'time']
 }
 
 def form_validation(table, form):
@@ -53,6 +53,13 @@ def paginate_with_filters(table, max_num_page, page=1, filters={}, criterion=[])
 		return pagination, SUCCESS_MESSAGE
 	return None, ERROR_MESSAGE
 
+def query_user_with_substring(substr, is_number = False, LIMIT_NUM = 20):
+	if is_number:
+		return db.session.query(User).filter(User.phone.contains(substr)).limit(LIMIT_NUM)
+	else:
+		return db.session.query(User).filter(User.first_name.contains(substr)).limit(LIMIT_NUM)
+
+
 def query_object(table, filters={}):
 	if table in table_mapping_objects.keys():
 		items = db.session.query(table_mapping_objects[table]).filter_by(**filters)
@@ -64,6 +71,12 @@ def query_object(table, filters={}):
 def query_all(table, filters={}):
 	if table in table_mapping_objects.keys():
 		items = db.session.query(table_mapping_objects[table]).filter_by(**filters)
+		return items.all(), SUCCESS_MESSAGE
+	return None, ERROR_MESSAGE
+
+def query_all_with_order(table, filters={}, criterion="time"):
+	if table in table_mapping_objects.keys():
+		items = db.session.query(table_mapping_objects[table]).filter_by(**filters).order_by(getattr(table_mapping_objects[table], criterion).desc())
 		return items.all(), SUCCESS_MESSAGE
 	return None, ERROR_MESSAGE
 
@@ -89,7 +102,13 @@ def build_object(table, data):
 	if form_validation(table, data) is False:
 		return None
 	if table in table_mapping_objects.keys():
-		return table_mapping_objects[table](**data)
+		if table == "User":
+			try:
+				obj = table_mapping_objects[table](**data)
+			except IntegrityError as e:
+				return None
+		else:
+			return table_mapping_objects[table](**data)
 	return None
 
 '''

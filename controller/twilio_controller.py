@@ -1,8 +1,10 @@
+import datetime
 from .main_controller import *
 from admin.twilio.rest import Client
 from admin.twilio.twiml.messaging_response import MessagingResponse
+from admin.extensions import firebase_database
 
-ACCOUND_SID = "ACd2472e0ee6d04299378549ffbfb96b60"
+ACCOUNT_SID = "ACd2472e0ee6d04299378549ffbfb96b60"
 AUTH_TOKEN = "a1ae82e7e6267045be699fd464a7311b"
 INIT_STATE = "CREATED"
 FINAL_STATE_SUCCESS = "QUALIFIED"
@@ -27,64 +29,32 @@ def auto_reply(form):
 	INFO = create_record(True, phone, DEFAULT_CARRIER, "I will contact with you shortly")
 	return "I will contact with you shortly"
 
-def send_msg(phone, message):
-	#twilio api
-	'''
-	client = Client(ACCOUND_SID, AUTH_TOKEN)
-	msg = client.messages.\
-	create(
-    	to="+1"+phone,
-    	body=message,
-    	from_=DEFAULT_CARRIER
-    )
-    '''
-	create_record(True, phone, DEFAULT_CARRIER, message)
-	return message
+def send_msg(user, message):
+	if user is None or user.operator == "UNASSIGNED":
+		return "CANNOT MANUALLY SEND MESSAGE AT THIS STAGE"
+	record = create_record(user.phone, user.operator, message, False)
+	print("successfully created record: {}".format(str(record.id)))
+	data = {
+		"phone": user.phone,
+		"operator": user.operator,
+		"content": message,
+		"last_update": datetime.datetime.now().strftime('%H:%M:%S %m/%d/%Y'),
+		"tag": "MANUAL",
+		"record_id": record.id
+	}
+	firebase_database.child('/jobs').push(data)
+	print('successfully pushed job into firebase')
+	return "SUCCESS"
 
-'''
-'''
-def get_tag(tag_name):
-	print("GET_TAG: ", tag_name)
-	tag, _ = query_object('Message', filters={'tag': tag_name})
-	print(tag)
-	return tag
-
-def next_tag(answer, tag):
-	'''
-	answer is request.form['Body']
-	next tag
-	'''
-	if tag.tru_indicator in answer:
-		next_tag, _ = query_object('Message', filters={'tag': tag.tru_tag})
-		return next_tag 
-	elif tag.fal_indicator in answer:
-		next_tag, _ = query_object('Message', filters={'tag': tag.fal_tag})
-		return next_tag
-	next_tag, _ = query_object('Message', filters={'tag': tag.el_tag})
-	return next_tag
-
-def update_user_tag(uid, tag_name):
-	INFO = update_object('User', uid, {'tag': tag_name})
-	return INFO
-
-'''
-utility functions
-'''
-def tag_options(exclude_created = False):
-	pages, _ = paginate('Message', 100)
-	if exclude_created:
-		return [tag for tag in pages.items if tag.tag != 'CREATED']
-	return pages.items
-
-def is_final(tag):
-	return tag.tag in [FINAL_STATE_SUCCESS, FINAL_STATE_FAILURE, FINAL_STATE_ERROR]
-
-def create_record(is_bot, caller, carrier, content):
-	record = build_object('Record', {
-		'carrier': carrier,
-		'phone': caller,
-		'content': content,
-		'receive': is_bot
-		})
-	record, INFO = add_object('Record', record)
-	return INFO
+def create_record(phone, operator, content, is_client=False):
+	record_data = {
+		'operator': operator, 
+		'phone': phone, 
+		'content': content, 
+		'is_client': is_client,
+		'time': datetime.datetime.now()
+	}
+	record = build_object('Record', record_data)
+	print(record)
+	record, _ = add_object('Record', record)
+	return record

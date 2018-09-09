@@ -1,12 +1,10 @@
 import json
-import os
+import datetime
+import os, sys
 from flask import Flask, request, render_template, redirect, url_for
-from flask_sqlalchemy import SQLAlchemy
-from .controller.model.db import db
-from .controller.main_controller import *
-from .controller.model.user import User
-from .controller.twilio_controller import *
-from .controller.reset_controller import *
+from admin.extensions import firebase_database, firebase_auth_manager
+from admin.controller.reset_controller import *
+from admin.controller.main_controller import *
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/database.db'
@@ -14,77 +12,31 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['UPLOAD_FOLDER'] = '/tmp/flask/upload'
 db.init_app(app)
 
-UID = 11
+def create_record(phone, operator, content):
+	record_data = {
+		'operator': operator, 
+		'phone': phone, 
+		'content': content, 
+		'is_client': False,
+		'time': datetime.datetime.now()
+	}
+	record = build_object("Record", record_data)
+	print(record)
+	return record
 
-def sample_data(num):
-    return {
-        'tag': 'tag_'+str(num), 
-        'content': 'content_'+str(num),
-        'tru_indicator': 'tru_indicator_'+str(num),
-        'fal_indicator': 'fal_indicator_'+str(num),
-        'tru_tag': 'tru_tag_'+str(num),
-        'fal_tag': 'fal_tag_'+str(num),
-        'el_tag': 'el_tag_'+str(num)
-    }
+def search_delivered_record():
+	page, _ = paginate_with_filters('Record', 20, page=3, filters={'delivered': True})
+	for record in page.items:
+		print(record)
 
-def build_work_flow():
-    step1 = {
-        'tag': INIT_STATE, 
-        'content': 'content_6',
-        'tru_indicator': 'tru_indicator_6',
-        'fal_indicator': 'fal_indicator_6',
-        'tru_tag': 'tru_tag_6',
-        'fal_tag': FINAL_STATE,
-        'el_tag': ACTION_STATE
-    }
-
-    step2 = {
-        'tag': 'tru_tag_6', 
-        'content': 'content_12',
-        'tru_indicator': 'tru_indicator_12',
-        'fal_indicator': 'fal_indicator_12',
-        'tru_tag': ACTION_STATE,
-        'fal_tag': FINAL_STATE,
-        'el_tag': ACTION_STATE
-    }
-
-    msg1 = build_object("Message", step1)
-    add_object("Message", msg1)
-    msg2 = build_object("Message", step2)
-    add_object("Message", msg2)
-    return 'Success'
-
-def request_in(uid):
-    user, _ = query_object('User', filters= {'id':uid})
-    print(user)
-    return {
-        'Body': 'Yes is my answer',
-        'Phone': user.phone,
-        'UID': uid
-    }
-
-def test_auto_reply():
-    data = request_in(UID)
-    print(update_object('User', UID, {'tag': INIT_STATE}))
-    INFO, phone = auto_reply(data)
-    print(INFO, phone)
-    records, _ = paginate_with_filters("Record", 100, filters={"phone": phone}, criterion=['time'])
-    user, _ = query_object('User', filters= {'id': UID})
-
-def find_tag():
-    tag, _ = query_object('Message', filters={"tag": INIT_STATE})
-    return tag
-
-def find_tags():
-    tags, _ = paginate_with_filters("Message", 20)
-    for tag in tags.items:
-        print(tag)
-        print(tag.tag)
-        print(tag.content)
-
-with app.test_request_context():
-    page, _ = paginate('User', 20)
-    users = page.items
-    for user in users:
-        print(user.tag)
-    exit(0)
+with app.app_context():
+	# operator = {
+	# 'phone': '8157612213',
+	# 'id': 'yHD9R9uS9ZgBboP4nUuXR2h1cj43'
+	# }
+	# jobs = firebase_database.child('/jobs').order_by_child('operator').equal_to('8157612213').get().val()
+	# jobs_with_tag = [{"id": key, "phone": jobs[key]['phone'], "operator":jobs[key]['operator'], "content": jobs[key]['content'], "record_id": jobs[key]['record_id']} for key in jobs.keys() if jobs[key]['tag'] == "AUTOMATION"]
+	# print(jobs_with_tag)
+	# sys.exit("Terminated")
+	search_delivered_record()
+	sys.exit('Terminated')
