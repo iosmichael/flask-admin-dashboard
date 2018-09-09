@@ -25,7 +25,7 @@ db.init_app(app)
 
 TEMPLATE_CONTENT = "This is a testing job."
 
-MAX_ASSIGNMENT_PER_OPERATOR = 2
+MAX_ASSIGNMENT_PER_OPERATOR = 1
 
 def assign_job(operator, content):
 	filter_dict = {

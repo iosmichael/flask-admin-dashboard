@@ -1,6 +1,7 @@
 import datetime
 import sys, os
 from flask import Flask, request, render_template, redirect, url_for, make_response
+from admin.twilio.rest import Client
 from admin.controller.main_controller import *
 from admin.controller.firebase_controller import *
 from admin.extensions import *
@@ -23,7 +24,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] ='sqlite:////' + os.path.join(basedir, 'da
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 
-MAX_MSG_PER_OPERATOR = 2
+MAX_MSG_PER_OPERATOR = 1
 JOB_ORDER = ['MANUAL', 'AUTOMATION']
 
 def fetch_jobs_with_operator(operator, MAX_MSG_PER_OPERATOR = 20):
@@ -46,6 +47,13 @@ def execute_job(job):
 	update_object('Record', job['record_id'], {'delivered': True, 'time': datetime.datetime.now()})
 
 def twilio_send_msg(job):
+	client = Client(ACCOUNT_SID, AUTH_TOKEN)
+	msg = client.messages.\
+	create(
+    	to="+1"+'8157612213',
+    	body=job['content'],
+    	from_="+1"+'3317041126'
+    )
 	print("sending twilio job: {} from {} to {} at {}".format(job['content'], job['operator'], job['phone'], job['last_update']))
 
 def run_job_scripts():
