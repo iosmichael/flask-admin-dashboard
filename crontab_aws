@@ -1,0 +1,2 @@
+* * * * * /usr/bin/bash ~/admin/start_cron.sh
+* * * * * /usr/bin/bash ~/admin/start_cron_twilio.sh

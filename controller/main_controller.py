@@ -23,7 +23,7 @@ table_mapping_headers = {
 }
 
 table_mapping_keys = {
-	"User": ['first_name', 'last_name', 'zipcode', 'state', 'dob', 'sex', 'phone', 'tag'],
+	"User": ['first_name', 'last_name', 'zipcode', 'state', 'dob', 'sex', 'phone', 'tag', 'operator'],
 	"Message": ['tag','content','tru_indicator','fal_indicator','tru_tag', 'fal_tag','el_tag'],
 	"Record": ['operator', 'phone', 'content', 'is_client', 'delivered', 'time']
 }
