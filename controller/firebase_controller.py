@@ -26,9 +26,9 @@ def get_settings():
 	node = get_node()
 	if node is None:
 		return node
-	setting_dicts = node.child("/{}/setting".format(firebase_auth_manager.get_uid())).get(token=firebase_auth_manager.get_idToken()).val()
+	setting_dicts = node.child("/setting").get().val()
 	if setting_dicts is None:
-		node.child("/{}/setting".format(firebase_auth_manager.get_uid())).set(data_mapping, token=firebase_auth_manager.get_idToken())
+		node.child("/setting").set(data_mapping)
 		return data_mapping
 	return setting_dicts
 
@@ -49,7 +49,7 @@ def update_node(subdir, data):
 	if node is None:
 		return node
 	try:
-		json = node.child("/{}/setting/{}".format(firebase_auth_manager.get_uid(), subdir)).update(data, token=firebase_auth_manager.get_idToken())
+		json = node.child("/setting/{}".format(subdir)).update(data)
 	except request.extensions.HTTPError as e:
 		return None
 	return json

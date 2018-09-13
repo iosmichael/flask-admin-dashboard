@@ -22,6 +22,4 @@ def send_custom():
 def reply():
     """Respond to incoming calls with a simple text message."""
     # Start our TwiML response
-    resp = MessagingResponse()
-    resp.message(auto_reply(request.form))
-    return str(resp)
+    auto_reply(request.form)
