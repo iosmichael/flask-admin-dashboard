@@ -16,6 +16,7 @@ class Record(db.Model):
 		return data
 
 	def __repr__(self):
+		print(self.__dict__)
 		return '<Record %s>' % (self.operator + " " + self.phone + " " + self.content + ": " + self.time.strftime('%H:%M:%S %m/%d/%Y'))
 	
 	def update(self, **kwarg):

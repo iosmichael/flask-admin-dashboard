@@ -27,8 +27,6 @@ MAX_NUM_PER_PAGE = 20
 @app.route('/')
 @app.route('/admin')
 def index():
-    if firebase_auth_manager.is_auth() is False:
-        return render_template('login.html')
     return admin()
 
 @app.route('/operators')

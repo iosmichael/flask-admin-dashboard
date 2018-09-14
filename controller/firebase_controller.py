@@ -17,16 +17,8 @@ data_mapping = {
 	}
 }
 
-def get_node():
-	if firebase_auth_manager.is_auth() is False:
-		return None
-	return firebase_database
-
 def get_settings():
-	node = get_node()
-	if node is None:
-		return node
-	setting_dicts = node.child("/setting").get().val()
+	setting_dicts = firebase_database.child("/setting").get().val()
 	if setting_dicts is None:
 		node.child("/setting").set(data_mapping)
 		return data_mapping
@@ -45,12 +37,9 @@ def get_jobs():
 	return firebase_database.child('/jobs').get().val()
 
 def update_node(subdir, data):
-	node = get_node()
-	if node is None:
-		return node
 	try:
-		json = node.child("/setting/{}".format(subdir)).update(data)
-	except request.extensions.HTTPError as e:
+		json = firebase_database.child("/setting/{}".format(subdir)).update(data)
+	except:
 		return None
 	return json
 
