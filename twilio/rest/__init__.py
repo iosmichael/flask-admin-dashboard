@@ -131,7 +131,7 @@ class Client(object):
         :rtype: twilio.rest.accounts.Accounts
         """
         if self._accounts is None:
-            from twilio.rest.accounts import Accounts
+            from admin.twilio.rest.accounts import Accounts
             self._accounts = Accounts(self)
         return self._accounts
 
@@ -144,7 +144,7 @@ class Client(object):
         :rtype: twilio.rest.api.Api
         """
         if self._api is None:
-            from twilio.rest.api import Api
+            from admin.twilio.rest.api import Api
             self._api = Api(self)
         return self._api
 
@@ -157,7 +157,7 @@ class Client(object):
         :rtype: twilio.rest.chat.Chat
         """
         if self._chat is None:
-            from twilio.rest.chat import Chat
+            from admin.twilio.rest.chat import Chat
             self._chat = Chat(self)
         return self._chat
 
@@ -170,7 +170,7 @@ class Client(object):
         :rtype: twilio.rest.fax.Fax
         """
         if self._fax is None:
-            from twilio.rest.fax import Fax
+            from admin.twilio.rest.fax import Fax
             self._fax = Fax(self)
         return self._fax
 
@@ -183,7 +183,7 @@ class Client(object):
         :rtype: twilio.rest.ip_messaging.IpMessaging
         """
         if self._ip_messaging is None:
-            from twilio.rest.ip_messaging import IpMessaging
+            from admin.twilio.rest.ip_messaging import IpMessaging
             self._ip_messaging = IpMessaging(self)
         return self._ip_messaging
 
@@ -196,7 +196,7 @@ class Client(object):
         :rtype: twilio.rest.lookups.Lookups
         """
         if self._lookups is None:
-            from twilio.rest.lookups import Lookups
+            from admin.twilio.rest.lookups import Lookups
             self._lookups = Lookups(self)
         return self._lookups
 
@@ -209,7 +209,7 @@ class Client(object):
         :rtype: twilio.rest.monitor.Monitor
         """
         if self._monitor is None:
-            from twilio.rest.monitor import Monitor
+            from admin.twilio.rest.monitor import Monitor
             self._monitor = Monitor(self)
         return self._monitor
 
@@ -222,7 +222,7 @@ class Client(object):
         :rtype: twilio.rest.notify.Notify
         """
         if self._notify is None:
-            from twilio.rest.notify import Notify
+            from admin.twilio.rest.notify import Notify
             self._notify = Notify(self)
         return self._notify
 
@@ -235,7 +235,7 @@ class Client(object):
         :rtype: twilio.rest.preview.Preview
         """
         if self._preview is None:
-            from twilio.rest.preview import Preview
+            from admin.twilio.rest.preview import Preview
             self._preview = Preview(self)
         return self._preview
 
@@ -248,7 +248,7 @@ class Client(object):
         :rtype: twilio.rest.pricing.Pricing
         """
         if self._pricing is None:
-            from twilio.rest.pricing import Pricing
+            from admin.twilio.rest.pricing import Pricing
             self._pricing = Pricing(self)
         return self._pricing
 
@@ -261,7 +261,7 @@ class Client(object):
         :rtype: twilio.rest.proxy.Proxy
         """
         if self._proxy is None:
-            from twilio.rest.proxy import Proxy
+            from admin.twilio.rest.proxy import Proxy
             self._proxy = Proxy(self)
         return self._proxy
 
@@ -274,7 +274,7 @@ class Client(object):
         :rtype: twilio.rest.taskrouter.Taskrouter
         """
         if self._taskrouter is None:
-            from twilio.rest.taskrouter import Taskrouter
+            from admin.twilio.rest.taskrouter import Taskrouter
             self._taskrouter = Taskrouter(self)
         return self._taskrouter
 
@@ -287,7 +287,7 @@ class Client(object):
         :rtype: twilio.rest.trunking.Trunking
         """
         if self._trunking is None:
-            from twilio.rest.trunking import Trunking
+            from admin.twilio.rest.trunking import Trunking
             self._trunking = Trunking(self)
         return self._trunking
 
@@ -300,7 +300,7 @@ class Client(object):
         :rtype: twilio.rest.video.Video
         """
         if self._video is None:
-            from twilio.rest.video import Video
+            from admin.twilio.rest.video import Video
             self._video = Video(self)
         return self._video
 
@@ -313,7 +313,7 @@ class Client(object):
         :rtype: twilio.rest.messaging.Messaging
         """
         if self._messaging is None:
-            from twilio.rest.messaging import Messaging
+            from admin.twilio.rest.messaging import Messaging
             self._messaging = Messaging(self)
         return self._messaging
 
@@ -326,7 +326,7 @@ class Client(object):
         :rtype: twilio.rest.wireless.Wireless
         """
         if self._wireless is None:
-            from twilio.rest.wireless import Wireless
+            from admin.twilio.rest.wireless import Wireless
             self._wireless = Wireless(self)
         return self._wireless
 
@@ -339,7 +339,7 @@ class Client(object):
         :rtype: twilio.rest.sync.Sync
         """
         if self._sync is None:
-            from twilio.rest.sync import Sync
+            from admin.twilio.rest.sync import Sync
             self._sync = Sync(self)
         return self._sync
 
@@ -352,7 +352,7 @@ class Client(object):
         :rtype: twilio.rest.studio.Studio
         """
         if self._studio is None:
-            from twilio.rest.studio import Studio
+            from admin.twilio.rest.studio import Studio
             self._studio = Studio(self)
         return self._studio
 

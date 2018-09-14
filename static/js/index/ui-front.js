@@ -265,7 +265,6 @@ $(function () {
 			//record.delivered
 			console.log(record);
 			responsiveChatPush('form.chat', record.is_delivered, record.is_client, record.time, record.content);
-			responsiveChatPush('form.chat', record.is_delivered, true, record.time, "This is a really long message. This is a really long message.");
 		})
 	}
 

@@ -62,16 +62,13 @@ def create_record(phone, operator, content):
 	return record
 
 def run_job_scripts():
-	try:
-		# enable_schedule = firebase_database.child('/setting/info/enableScheduler').get().val()
-		# if enable_schedule == "true":
-		operators = get_operators()
-		for operator in operators:
-			print(operator)
-			content = firebase_database.child('/setting/info/autoMessage').get().val()
-			assign_job(operator, content)
-	except:
-		print('firebase went wrong')
+	# enable_schedule = firebase_database.child('/setting/info/enableScheduler').get().val()
+	# if enable_schedule == "true":
+	operators = get_operators()
+	for operator in operators:
+		print(operator)
+		content = firebase_database.child('/setting/info/autoMessage').get().val()
+		assign_job(operator, content)
 
 with app.app_context():
 	run_job_scripts()
