@@ -7,10 +7,14 @@ $(function(){
        dataType:'json',
        success : (data) => {
 	        console.log(data);
-			$('.number#summary-new').text('<strong>'+data.new+'</strong>');
-			$('.number#summary-positive').text('<strong>'+data.positive+'</strong>');
-			$('.number#summary-negative').text('<strong>'+data.negative+'</strong>');
-			$('.number#summary-archived').text('<strong>'+data.archived+'</strong>');
+	        $('.number#summary-new').empty();
+			$('.number#summary-new').append($('<strong></strong>').text(data.new));
+			$('.number#summary-positive').empty();
+			$('.number#summary-positive').append($('<strong></strong>').text(data.positive));
+			$('.number#summary-negative').empty();
+			$('.number#summary-negative').append($('<strong></strong>').text(data.negative));
+			$('.number#summary-archived').empty();
+			$('.number#summary-archived').append($('<strong></strong>').text(data.archived));
        }
 	}).fail(()=> {
 		alert('summary update error');

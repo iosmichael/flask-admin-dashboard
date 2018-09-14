@@ -58,12 +58,16 @@ def query_records(phone):
     record_dicts = [record.as_dict() for record in records]
     return json.dumps(record_dicts)
 
-@endpoints.route('/summary')
+@endpoints.route('/summary', methods=['POST'])
 def summary():
+    created_count, _ = paginate_with_filters('User', MAX_NUM_PER_PAGE, filters={'tag':'CREATED'})
+    positive_count, _ = paginate_with_filters('User', MAX_NUM_PER_PAGE, filters={'tag':'POSITIVE'})
+    negative_count, _ = paginate_with_filters('User', MAX_NUM_PER_PAGE, filters={'tag':'NEGATIVE'})
+    archived_count, _ = paginate_with_filters('User', MAX_NUM_PER_PAGE, filters={'tag':'ARCHIVED'})
     summary_dict = {
-    'new': 250,
-    'positive':5,
-    'negative':5,
-    'archived':0
+        'new': created_count.total,
+        'positive':positive_count.total,
+        'negative':negative_count.total,
+        'archived':archived_count.total
     }
     return json.dumps(summary_dict)
