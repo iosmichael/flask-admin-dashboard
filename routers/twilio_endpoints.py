@@ -23,3 +23,4 @@ def reply():
     """Respond to incoming calls with a simple text message."""
     # Start our TwiML response
     auto_reply(request.form)
+    return None
