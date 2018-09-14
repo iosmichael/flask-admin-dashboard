@@ -11,7 +11,7 @@ def auto_reply(form):
 	answer = form['Body']
 	phone = form['From'][2:]
 	user, _ = query_object('User', filters={'phone': phone})
-	INFO = create_record(phone, user.operator, answer, False)
+	INFO = create_record(phone, user.operator, answer, True)
 	if user.tag in ["POSITIVE", "NEGATIVE"]:
 		return
 	negative_indicator = firebase_database.child('/setting/info/replyIndicator').get().val()
