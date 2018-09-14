@@ -57,3 +57,13 @@ def query_records(phone):
     records, _ = query_all_with_order('Record', filters={'phone': phone}, criterion='time')
     record_dicts = [record.as_dict() for record in records]
     return json.dumps(record_dicts)
+
+@endpoints.route('/summary')
+def summary():
+    summary_dict = {
+    'new': 250,
+    'positive':5,
+    'negative':5,
+    'archived':0
+    }
+    return json.dumps(summary_dict)
