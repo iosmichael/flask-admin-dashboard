@@ -14,7 +14,7 @@ def auto_reply(form):
 	INFO = create_record(phone, user.operator, answer, False)
 	if user.tag in ["POSITIVE", "NEGATIVE"]:
 		return
-	negative_indicator = firebase_database.child('/setting/replyIndicator').get().val()
+	negative_indicator = firebase_database.child('/setting/info/replyIndicator').get().val()
 	negative_tokens = [word.strip() for word in negative_indicator.split(",")]
 	for token in negative_tokens:
 		if token in answer:
