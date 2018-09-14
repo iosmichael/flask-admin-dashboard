@@ -1,2 +1,2 @@
-* * * * * /usr/bin/bash ~/admin/start_cron.sh
-* * * * * /usr/bin/bash ~/admin/start_cron_twilio.sh
+00 12 * * * /usr/bin/bash ~/admin/start_cron_server.sh
+00 12 * * * /usr/bin/bash ~/admin/start_cron_twilio_server.sh
