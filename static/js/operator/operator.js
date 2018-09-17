@@ -1,5 +1,4 @@
 $(function(){
-
 	$("input#new-twilio-add-btn").click(function(){
 		let formData = fetchCreateForm();
 		$.ajax({

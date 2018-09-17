@@ -30,9 +30,9 @@ def send_msg(user, message):
 	client = Client(ACCOUNT_SID, AUTH_TOKEN)
 	msg = client.messages.\
 	create(
-    	to="+1"+'8157612213',
+    	to="+1"+ user.phone,
     	body=message,
-    	from_="+1"+'3317041126'
+    	from_="+1"+ user.operator
     )
 	return "SUCCESS"
 

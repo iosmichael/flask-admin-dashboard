@@ -6,8 +6,8 @@ from admin.controller.main_controller import *
 from admin.controller.firebase_controller import *
 from admin.extensions import *
 
-ACCOUNT_SID = "ACd2472e0ee6d04299378549ffbfb96b60"
-AUTH_TOKEN = "a1ae82e7e6267045be699fd464a7311b"
+ACCOUNT_SID = "AC2abd5ae307ba89b4e9832445ae5922bf"
+AUTH_TOKEN = "ed4db850e5e97672dacd21bf9dd03e68"
 '''
 USER STATES:
 	- CREATED
@@ -52,9 +52,9 @@ def twilio_send_msg(job):
 	client = Client(ACCOUNT_SID, AUTH_TOKEN)
 	msg = client.messages.\
 	create(
-    	to="+1"+'8157612213',
+    	to="+1"+ job['phone'],
     	body=job['content'],
-    	from_="+1"+'3317041126'
+    	from_="+1"+ job['operator']
     )
 	print("sending twilio job: {} from {} to {} at {}".format(job['content'], job['operator'], job['phone'], job['last_update']))
 
